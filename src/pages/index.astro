@@ -1,277 +1,101 @@
 ---
-import Card from "../components/Card.astro";
-import Layout from "../layouts/Layout.astro";
+import Card from '../components/Card.astro';
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import About from '../components/About.astro';
+import TopProjects from '../components/TopProjects.astro';
+import Footer from '../components/Footer.astro';
+import Contact from '../components/Contact.astro';
+import Customers from '../components/Customers.astro';
 ---
 
 <style>
-  .bg-hero {
-    background-image: url(https://livedemo00.template-help.com/wt_prod-14882_v1/images/parallax-1.jpg);
-  }
-  @keyframes fadein {
-    from {
-      opacity: 0;
+    .bg-hero {
+        background-image: url('/img/home.jpg');
     }
-    to {
-      opacity: 1;
+    @keyframes fadein {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
     }
-  }
 </style>
-<Layout title="Arking.">
-  <header class="bg-white border-b border-black/5">
-    <div class="w-full mx-auto md:px-12 px-8 max-w-7xl lg:px-16">
-      <div
-        x-data="{ open: false }"
-        class="relative flex flex-col w-full py-5 mx-auto bg-white md:items-center md:justify-between md:flex-row md:px-6"
-      >
-        <div
-          class="flex flex-row items-center justify-between lg:justify-start"
-        >
-          <a href="/" class="text-black inline-flex items-center gap-3">
-            <img src="/logo-simple.png" alt="Arking" class="w-10 h-10" />
-            <span class="font-bold font-display text-sky-900">Arking</span>
-          </a>
-          <button
-            @click="open = !open"
-            class="inline-flex items-center justify-center p-2 text-gray-400 hover:text-black focus:outline-none focus:text-black lg:hidden"
-          >
-            <svg
-              class="w-6 h-6"
-              stroke="currentColor"
-              fill="none"
-              viewBox="0 0 24 24"
-            >
-              <path
-                :class="{'hidden': open, 'inline-flex': !open }"
-                class="inline-flex"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M4 6h16M4 12h16M4 18h16"></path>
-              <path
-                :class="{'hidden': !open, 'inline-flex': open }"
-                class="hidden"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M6 18L18 6M6 6l12 12"></path>
-            </svg>
-          </button>
-        </div>
-        <nav
-          :class="{'flex': open, 'hidden': !open}"
-          class="flex-col items-center flex-grow hidden md:pb-0 md:flex md:justify-end md:flex-row"
-        >
-          <a
-            class="px-2 lg:px-6 py-2 md:px-3 text-sm font-medium text-sky-600 hover:text-accent-400 lg:ml-auto"
-            href="/#home">Inicio</a
-          >
-          <a
-            class="px-2 lg:px-6 py-2 md:px-3 text-sm font-medium text-sky-600 hover:text-accent-400"
-            href="/#about">Quienes somos</a
-          >
-          <a
-            class="px-2 lg:px-6 py-2 md:px-3 text-sm font-medium text-sky-600 hover:text-accent-400"
-            href="/#services"
-          >
-            Nuestros servicios</a
-          >
-          <a
-            class="px-2 lg:px-6 py-2 md:px-3 text-sm font-medium text-sky-600 hover:text-accent-400"
-            href="/#projects"
-          >
-            Equipo</a
-          >
-          <a
-            class="px-2 lg:px-6 py-2 md:px-3 text-sm font-medium text-sky-600 hover:text-accent-400"
-            href="/#contact"
-          >
-            Contáctanos</a
-          >
-        </nav>
-      </div>
-    </div>
-  </header>
-  <main id="main-content">
-    <section
-      id="home"
-      class="w-full bg-hero bg-no-repeat bg-cover h-screen lg:min-h-[110vh] px-12 xl:px-0 flex items-center"
-      data-astro-cid-j7pv25f6=""
-    >
-      <div
-        class="lg:max-w-[1200px] w-full mx-auto flex flex-col"
-        data-astro-cid-j7pv25f6=""
-      >
-        <h1
-          class="text-[40px] leading-[50px] md:text-[60px] xl:text-[85px] pb-4 font-dm md:leading-[106.25px] w-full text-white font-bold"
-          data-astro-cid-j7pv25f6=""
-        >
-          Construimos tu diseño de vida
-        </h1><p
-          class="text-base md:text-[22px] pb-5 font-jost text-text-gray-200 w-full lg:max-w-[50%]"
-          data-astro-cid-j7pv25f6=""
-        >
-        </p><button
-          class="px-8 py-3 text-white bg-accent-400 rounded-full font-bold font-display hover:bg-accent-500 bg-sky-900 w-fit my-auto"
-          type="button">Contáctanos</button
-        >
-      </div>
-    </section>
-    <section id="about" data-aos="fade-up">
-      <div class="w-full mx-auto md:px-12 px-8 max-w-7xl lg:px-16">
-        <div class="flex flex-col items-center justify-center py-16">
-          <h2 class="text-4xl font-bold font-display text-sky-900">
-            ¿Quiénes somos?
-          </h2>
-          <p class="text-lg text-center text-text-gray-600 max-w-2xl mt-4">
-            Somos una empresa que se dedica a la construcción de espacios
-            habitables, con el fin de mejorar la calidad de vida de las
-            personas.
-          </p>
-        </div>
-        <div class="mb-8 grid gap-x-8 gap-y-6 grid-cols-4 xs:grid-cols-2">
-          <Card title="Ing Adriana Murillo" body="Compras y estimaciones" />
-          <Card title="Ing Marco Llamas" body="Compras y estimaciones" />
-          <Card title="Ing Roberto Padilla" body="Residente de obra" />
-          <Card title="Ing Manuel Padilla" body="Residente de obra" />
-        </div>
-      </div>
-    </section>
-    <section id="services" class="bg-sky-200" data-aos="fade-up">
-      <div class="w-full mx-auto md:px-12 px-8 max-w-7xl lg:px-16">
-        <div class="flex flex-col items-center justify-center py-16">
-          <h2 class="text-4xl font-bold font-display text-sky-900">
-            Nuestros servicios
-          </h2>
-          <div class="mt-8 grid gap-x-8 gap-y-6 grid-cols-2">
+<Layout title="Arking - Diseño y Construcción">
+    <header class="bg-white border-b border-black/5 fixed top-0 z-50 w-full glass-effect">
+        <div class="w-full mx-auto md:px-12 px-8 max-w-7xl lg:px-16">
             <div
-              class="feature-card rounded-xl bg-white p-5 pb-8 text-center"
-              data-aos="fade-up"
+                x-data="{ open: false }"
+                class="relative flex flex-col w-full py-5 mx-auto bg-white md:items-center md:justify-between md:flex-row md:px-6"
             >
-              <i class="fa-solid fa-paint-roller text-3xl text-sky-900"></i>
-              <div class="mt-4">
-                <h2 class="text-xl font-bold font-display text-sky-900">
-                  Remodelación
-                </h2>
-                <p class="mt-3">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit quam
-                  nihil
-                </p>
-              </div>
-            </div><div
-              class="feature-card rounded-xl bg-white p-5 pb-8 text-center"
-              data-aos="fade-up"
-            >
-              <i class="fa-solid fa-compass-drafting text-3xl text-sky-900"></i>
-              <div class="mt-4">
-                <h2 class="text-xl font-bold font-display text-sky-900">
-                  Diseño
-                </h2>
-                <p class="mt-3">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit quam
-                  nihil
-                </p>
-              </div>
-            </div><div
-              class="feature-card rounded-xl bg-white p-5 pb-8 text-center"
-              data-aos="fade-up"
-            >
-              <i class="fa-solid fa-house text-3xl text-sky-900"></i>
-              <div class="mt-4">
-                <h2 class="text-xl font-bold font-display text-sky-900">
-                  Construcción
-                </h2>
-                <p class="mt-3">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit quam
-                  nihil
-                </p>
-              </div>
-            </div><div
-              class="feature-card rounded-xl bg-white p-5 pb-8 text-center"
-              data-aos="fade-up"
-            >
-              <i class="fa-solid fa-road text-3xl text-sky-900"></i>
-              <div class="mt-4">
-                <h2 class="text-xl font-bold font-display text-sky-900">
-                  Urbanización
-                </h2>
-                <p class="mt-3">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit quam
-                  nihil
-                </p>
-              </div>
+                <div class="flex flex-row items-center justify-between lg:justify-start">
+                    <a href="/" class="text-black inline-flex items-center gap-3">
+                        <img src="/logo-simple.png" alt="Arking" class="w-10 h-10" />
+                        <span class="font-bold font-display text-sky-900">Arking</span>
+                    </a>
+                    <button
+                        @click="open = !open"
+                        class="inline-flex items-center justify-center p-2 text-gray-400 hover:text-black focus:outline-none focus:text-black lg:hidden"
+                    >
+                        <svg class="w-6 h-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                            <path
+                                :class="{'hidden': open, 'inline-flex': !open }"
+                                class="inline-flex"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16"></path>
+                            <path
+                                :class="{'hidden': !open, 'inline-flex': open }"
+                                class="hidden"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+                <nav
+                    :class="{'flex': open, 'hidden': !open}"
+                    class="flex-col items-center flex-grow hidden md:pb-0 md:flex md:justify-end md:flex-row"
+                >
+                    <a
+                        class="px-2 lg:px-6 py-2 md:px-3 text-sm font-medium text-sky-600 hover:text-accent-400 lg:ml-auto"
+                        href="/#home">Inicio</a
+                    >
+                    <a
+                        class="px-2 lg:px-6 py-2 md:px-3 text-sm font-medium text-sky-600 hover:text-accent-400"
+                        href="/#about">Quienes somos</a
+                    >
+                    <a
+                        class="px-2 lg:px-6 py-2 md:px-3 text-sm font-medium text-sky-600 hover:text-accent-400"
+                        href="/#services"
+                    >
+                        Nuestros servicios</a
+                    >
+                    <a
+                        class="px-2 lg:px-6 py-2 md:px-3 text-sm font-medium text-sky-600 hover:text-accent-400"
+                        href="/#projects"
+                    >
+                        Equipo</a
+                    >
+                    <a
+                        class="px-2 lg:px-6 py-2 md:px-3 text-sm font-medium text-sky-600 hover:text-accent-400"
+                        href="/#contact"
+                    >
+                        Contáctanos</a
+                    >
+                </nav>
             </div>
-          </div>
         </div>
-      </div>
-    </section>
-    <section id="projects" data-aos="fade-up">
-      <div class="w-full mx-auto md:px-12 px-8 max-w-7xl lg:px-16">
-        <div class="flex flex-col items-center justify-center py-16">
-          <h2 class="text-4xl font-bold font-display text-sky-900">
-            Nuestros proyectos
-          </h2>
-          <p class="text-lg text-center text-text-gray-600 max-w-2xl mt-4">
-            Conoce algunos de nuestros proyectos más recientes.
-          </p>
-        </div>
-      </div>
-    </section>
-    <section id="contact" data-aos="fade-up">
-      <div class="w-full mx-auto md:px-12 px-8 max-w-7xl lg:px-16">
-        <div class="flex flex-col items-center justify-center py-16">
-          <h2 class="text-4xl font-bold font-display text-sky-900">
-            Contáctanos
-          </h2>
-          <p class="text-lg text-center text-text-gray-600 max-w-2xl mt-4">
-            Si tienes alguna duda o necesitas más información, no dudes en
-            contactarnos.
-          </p>
-          <form class="w-full">
-            <div class="flex flex-col w-full mt-8">
-              <label for="name" class="text-text-gray-600">Nombre</label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                class="w-full px-4 py-2 border border-black/5 rounded-md mt-2"
-              />
-            </div>
-            <div class="flex flex-col w-full mt-4">
-              <label for="email" class="text-text-gray-600">Correo</label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                class="w-full px-4 py-2 border border-black/5 rounded-md mt-2"
-              />
-            </div>
-            <div class="flex flex-col w-full mt-4">
-              <label for="message" class="text-text-gray-600">Mensaje</label>
-              <textarea
-                id="message"
-                name="message"
-                class="w-full px-4 py-2 border border-black/5 rounded-md mt-2"
-              ></textarea>
-            </div>
-            <button
-              class="px-8 py-3 text-white bg-accent-400 rounded-full font-bold font-display hover:bg-accent-500 bg-sky-900 w-fit my-8"
-              type="submit"
-            >
-              Enviar
-            </button>
-          </form>
-        </div>
-      </div>
-    </section>
-  </main>
-  <footer>
-    <div class="w-full mx-auto md:px-12 px-8 max-w-7xl lg:px-16">
-      <div class="flex flex-col items-center justify-center py-16">
-        <h2 class="text-4xl font-bold font-display text-sky-900">Arking</h2>
-        <p class="text-lg text-center text-text-gray-600 max-w-2xl mt-4">
-          © 2021 Arking. Todos los derechos reservados.
-        </p>
-      </div>
-    </div>
-  </footer>
+    </header>
+    <main id="main-content">
+        <Hero />
+        <About />
+        <TopProjects />
+        <Customers />
+        <Contact />
+    </main>
+    <Footer />
 </Layout>
