@@ -1,7 +1,6 @@
 ---
 import ContactButton from './ContactButton.astro';
 const { entry } = Astro.props;
-const { slug } = entry;
 const { Content } = await entry.render();
 const { title, image, price, specifications, images, features, address, location } = entry.data;
 const { lat, lng } = location;

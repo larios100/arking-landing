@@ -4,7 +4,6 @@ import Layout from '@layouts/Layout.astro';
 import { getCollection } from 'astro:content';
 const projects = await getCollection('projects');
 const categories = Array.from(new Set(projects.map((p) => p.data.category)));
-let selectedCategory = '';
 ---
 
 <style>
