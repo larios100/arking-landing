@@ -6,6 +6,7 @@ const projects = defineCollection({
     title: z.string(),
     image: z.string(),
     price: z.string(),
+    category: z.string(),
     specifications: z.object({
       area: z.string(),
       construction: z.string(),

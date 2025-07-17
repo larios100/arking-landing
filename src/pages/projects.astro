@@ -1,0 +1,200 @@
+---
+import ContactButton from '@components/ContactButton.astro';
+import Layout from '@layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+const projects = await getCollection('projects');
+const categories = Array.from(new Set(projects.map((p) => p.data.category)));
+let selectedCategory = '';
+---
+
+<style>
+    .filter-bar {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        margin-bottom: 2rem;
+        flex-wrap: wrap;
+    }
+    .filter-btn {
+        padding: 0.5rem 1.5rem;
+        border-radius: 999px;
+        border: 1px solid #e5e7eb;
+        background: #fff;
+        color: #222;
+        font-size: 1rem;
+        cursor: pointer;
+        transition:
+            background 0.2s,
+            color 0.2s;
+    }
+    .filter-btn.active {
+        background: #0ea5e9;
+        color: #fff;
+        border-color: #0ea5e9;
+    }
+</style>
+<Layout title="Arking - Proyectos">
+    <header class="border-b border-black/5 fixed top-0 z-50 w-full bg-white backdrop-blur">
+        <div class="w-full mx-auto container">
+            <div class="relative flex flex-row w-full py-5 mx-auto items-center justify-between">
+                <a href="/" class="text-black inline-flex items-center gap-3">
+                    <img src="/logo-simple.png" alt="Arking" class="w-10 h-10" />
+                    <span class="font-bold font-display text-sky-900">Arking</span>
+                </a>
+                <nav class="flex items-center">
+                    <a
+                        class="px-4 py-2 text-sm font-medium text-sky-600 hover:text-accent-400"
+                        href="/">Inicio</a
+                    >
+                </nav>
+            </div>
+        </div>
+    </header>
+    <main class="pt-8 bg-white min-h-screen">
+        <div class="container mx-auto px-6 lg:px-8">
+            <section class="py-20 bg-gradient-to-br from-gray-50 to-white" data-aos="fade-up">
+                <div class="container mx-auto px-6 lg:px-8">
+                    <div class="text-center max-w-4xl mx-auto animate-fadeInUp">
+                        <h1
+                            class="text-4xl lg:text-6xl font-light text-gray-900 mb-6 tracking-tight"
+                        >
+                            Todos los<span class="block text-gradient font-medium">Proyectos</span>
+                        </h1>
+                    </div><p class="text-lg lg:text-xl text-gray-600 font-light leading-relaxed">
+                        Explora nuestra colección completa de proyectos arquitectónicos, desde
+                        residencias exclusivas hasta desarrollos urbanos innovadores.
+                    </p>
+                </div>
+            </section>
+        </div>
+        <div class="filter-bar" data-aos="fade-up">
+            <button class="filter-btn active">Todos</button>
+            {
+                categories.map((cat) => (
+                    <button class="filter-btn" data-category={cat}>
+                        {cat}
+                    </button>
+                ))
+            }
+        </div>
+        <section id="projects-list" class="grid lg:grid-cols-4 gap-8 lg:gap-12 max-w-7xl mx-auto">
+            {
+                projects.map((project) => (
+                    <a
+                        href={`/projects/${project.slug}`}
+                        class="group block animate-fadeInUp"
+                        style="animation-delay: 0s;"
+                        data-category={project.data.category}
+                        data-aos="fade-up"
+                    >
+                        <div class="relative overflow-hidden bg-gray-50 aspect-[4/3] rounded-2xl">
+                            <img
+                                alt={project.data.title}
+                                loading="lazy"
+                                width="800"
+                                height="600"
+                                decoding="async"
+                                class="object-cover w-full h-full group-hover:scale-105 transition-transform duration-700 ease-out"
+                                src={project.data.image}
+                                style="color: transparent;"
+                            />
+                            <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all duration-500" />
+                            <div class="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black/60 via-black/20 to-transparent">
+                                <div class="text-white transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
+                                    <h3 class="text-2xl lg:text-3xl font-light mb-2 tracking-wide">
+                                        {project.data.title}
+                                    </h3>
+                                    <div class="flex items-center text-white/80 text-sm font-light tracking-wide">
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width="24"
+                                            height="24"
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            stroke-width="2"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            class="lucide lucide-map-pin h-4 w-4 mr-2 opacity-70"
+                                        >
+                                            <>
+                                                <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+                                                <circle cx="12" cy="10" r="3" />
+                                            </>
+                                        </svg>
+                                        <span>{project.data.specifications.location}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="absolute top-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <div class="w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center">
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="24"
+                                        height="24"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        stroke-width="2"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        class="lucide lucide-arrow-right h-4 w-4 text-white"
+                                    >
+                                        <>
+                                            <path d="M5 12h14" />
+                                            <path d="m12 5 7 7-7 7" />
+                                        </>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                ))
+            }
+        </section>
+        <section class="py-20 mt-20 lg:py-32 bg-gray-900 text-white" data-aos="fade-up">
+            <div class="container mx-auto px-6 lg:px-8 text-center">
+                <div class="max-w-3xl mx-auto space-y-8 animate-fadeInUp">
+                    <h2 class="text-3xl lg:text-5xl font-light leading-tight">
+                        ¿No encuentras lo que<span class="block font-medium">buscas?</span>
+                    </h2><p class="text-xl text-gray-300 leading-relaxed font-light">
+                        Cada proyecto es único. Hablemos sobre cómo podemos crear algo especial para
+                        ti.
+                    </p><div class="flex flex-col sm:flex-row gap-4 justify-center pt-8">
+                        <ContactButton />
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</Layout>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('.filter-btn').forEach((btn) => {
+            btn.addEventListener('click', function () {
+                filterProjects(btn);
+            });
+        });
+    });
+    // Filtrado de proyectos por categoría (JS simple)
+    function filterProjects(btn: any) {
+        const category = btn.getAttribute('data-category') || '';
+        console.log(`Filtrando proyectos por categoría: ${category}`);
+        const cards = document.querySelectorAll('#projects-list > a');
+        cards.forEach((card) => {
+            const cat = card.getAttribute('data-category');
+            if (!category || cat === category) {
+                card.style.display = '';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+        document.querySelectorAll('.filter-btn').forEach((btn) => {
+            btn.classList.remove('active');
+            if ((category === '' && btn.textContent === 'Todos') || btn.textContent === category) {
+                btn.classList.add('active');
+            }
+        });
+    }
+</script>

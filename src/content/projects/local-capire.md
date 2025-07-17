@@ -3,6 +3,7 @@ slug: 'local-capire'
 title: 'Local Capire'
 image: '/img/projects/local-1.jpg'
 price: '$1,2000,000.00'
+category: 'Local'
 specifications:
     area: '120 m²'
     construction: '150 m²'
