@@ -181,7 +181,7 @@ let selectedCategory = '';
     function filterProjects(btn: any) {
         const category = btn.getAttribute('data-category') || '';
         console.log(`Filtrando proyectos por categoría: ${category}`);
-        const cards = document.querySelectorAll('#projects-list > a');
+        const cards = document.querySelectorAll<HTMLElement>('#projects-list > a');
         cards.forEach((card) => {
             const cat = card.getAttribute('data-category');
             if (!category || cat === category) {
