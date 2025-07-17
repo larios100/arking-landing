@@ -1,7 +1,7 @@
 ---
 slug: 'local-capire'
 title: 'Local Capire'
-image: '/img/projects/local-1.jpg'
+image: '/img/projects/local-1.webp'
 price: '$1,2000,000.00'
 category: 'Local'
 specifications:
@@ -22,8 +22,8 @@ location:
     lng: -103.6776209
 address: 'Calle Ejemplo 123, Colima, México'
 images:
-    - '/img/projects/local-1.jpg'
-    - '/img/projects/local-2.jpg'
+    - '/img/projects/local-1.webp'
+    - '/img/projects/local-2.webp'
 ---
 
 Hermosa casa de una planta con acabados de lujo, ideal para familias.

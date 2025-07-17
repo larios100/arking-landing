@@ -1,7 +1,7 @@
 ---
 slug: 'casa-caliza'
 title: 'Casa Caliza'
-image: '/img/projects/rioja21-1.jpg'
+image: '/img/projects/rioja21-1.webp'
 price: '$1,2000,000.00'
 category: 'Casa habitación'
 specifications:
@@ -22,9 +22,9 @@ location:
     lng: -103.6776209
 address: 'Calle Ejemplo 123, Colima, México'
 images:
-    - '/img/projects/rioja21-1.jpg'
-    - '/img/projects/rioja21-2.jpg'
-    - '/img/projects/rioja21-3.jpg'
+    - '/img/projects/rioja21-1.webp'
+    - '/img/projects/rioja21-2.webp'
+    - '/img/projects/rioja21-3.webp'
 ---
 
 Hermosa casa de una planta con acabados de lujo, ideal para familias.

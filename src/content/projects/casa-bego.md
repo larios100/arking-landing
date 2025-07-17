@@ -1,7 +1,7 @@
 ---
 slug: 'casa-bego'
 title: 'Casa Bego'
-image: '/img/projects/mirador-1.jpg'
+image: '/img/projects/mirador-1.webp'
 price: '$1,2000,000.00'
 category: 'Casa habitación'
 specifications:
@@ -22,10 +22,10 @@ location:
     lng: -103.6776209
 address: 'Calle Ejemplo 123, Colima, México'
 images:
-    - '/img/projects/mirador-1.jpg'
-    - '/img/projects/mirador-2.jpg'
-    - '/img/projects/mirador-3.jpg'
-    - '/img/projects/mirador-4.jpg'
+    - '/img/projects/mirador-1.webp'
+    - '/img/projects/mirador-2.webp'
+    - '/img/projects/mirador-3.webp'
+    - '/img/projects/mirador-4.webp'
 ---
 
 Hermosa casa de una planta con acabados de lujo, ideal para familias.
