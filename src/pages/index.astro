@@ -1,12 +1,11 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Hero from '../components/Hero.astro';
-import About from '../components/About.astro';
-import TopProjects from '../components/TopProjects.astro';
-import Footer from '../components/Footer.astro';
-import Contact from '../components/Contact.astro';
-import Customers from '../components/Customers.astro';
-import FloatingButtons from '@components/FloatingButtons.astro';
+import Layout from '@layouts/Layout.astro';
+import Hero from '@components/Hero.astro';
+import About from '@components/About.astro';
+import TopProjects from '@components/TopProjects.astro';
+import Contact from '@components/Contact.astro';
+import Customers from '@components/Customers.astro';
+import NavLink from '@components/NavLink.astro';
 ---
 
 <style>
@@ -32,7 +31,7 @@ import FloatingButtons from '@components/FloatingButtons.astro';
                 <div class="flex flex-row items-center justify-between lg:justify-start">
                     <a href="/" class="text-black inline-flex items-center gap-3">
                         <img src="/logo-simple.png" alt="Arking" class="w-10 h-10" />
-                        <span class="font-bold font-display text-sky-900">Arking</span>
+                        <span class="font-bold font-display text-blue-800">Arking</span>
                     </a>
                     <button
                         id="menu-toggle"
@@ -61,33 +60,14 @@ import FloatingButtons from '@components/FloatingButtons.astro';
                     id="main-menu"
                     class="flex-col items-center flex-grow hidden md:pb-0 md:flex md:justify-end md:flex-row"
                 >
-                    <a
-                        class="px-2 lg:px-6 py-2 md:px-3 text-sm font-medium text-sky-600 hover:text-accent-400 lg:ml-auto"
-                        href="/#Home">Inicio</a
-                    >
-                    <a
-                        class="px-2 lg:px-6 py-2 md:px-3 text-sm font-medium text-sky-600 hover:text-accent-400"
-                        href="/#About">Quienes somos</a
-                    >
-                    <a
-                        class="px-2 lg:px-6 py-2 md:px-3 text-sm font-medium text-sky-600 hover:text-accent-400"
-                        href="/#Projects"
-                    >
-                        Proyectos</a
-                    >
-                    <a
-                        class="px-2 lg:px-6 py-2 md:px-3 text-sm font-medium text-sky-600 hover:text-accent-400"
-                        href="/#Customers"
-                    >
-                        Nuestros clientes</a
-                    >
-
-                    <a
-                        class="px-2 lg:px-6 py-2 md:px-3 text-sm font-medium text-sky-600 hover:text-accent-400"
-                        href="/#Contact"
-                    >
-                        Contáctanos</a
-                    >
+                    <!-- -->
+                    <div class="lg:ml-auto">
+                        <NavLink title="Inicio" href="/#Home" />
+                        <NavLink title="Quienes somos" href="/#About" />
+                        <NavLink title="Proyectos" href="/#Projects" />
+                        <NavLink title="Nuestros clientes" href="/#Customers" />
+                        <NavLink title="Contáctanos" href="/#Contact" />
+                    </div>
                 </nav>
             </div>
         </div>
@@ -99,8 +79,6 @@ import FloatingButtons from '@components/FloatingButtons.astro';
         <Customers />
         <Contact />
     </main>
-    <Footer />
-    <FloatingButtons />
 </Layout>
 <script>
     document.addEventListener('DOMContentLoaded', function () {

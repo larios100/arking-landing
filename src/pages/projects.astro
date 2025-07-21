@@ -1,5 +1,6 @@
 ---
 import ContactButton from '@components/ContactButton.astro';
+import NavLink from '@components/NavLink.astro';
 import Layout from '@layouts/Layout.astro';
 import { getCollection } from 'astro:content';
 const projects = await getCollection('projects');
@@ -27,9 +28,9 @@ const categories = Array.from(new Set(projects.map((p) => p.data.category)));
             color 0.2s;
     }
     .filter-btn.active {
-        background: #0ea5e9;
+        background: #3b82f6;
         color: #fff;
-        border-color: #0ea5e9;
+        border-color: #3b82f6;
     }
 </style>
 <Layout title="Arking - Proyectos">
@@ -38,13 +39,10 @@ const categories = Array.from(new Set(projects.map((p) => p.data.category)));
             <div class="relative flex flex-row w-full py-5 mx-auto items-center justify-between">
                 <a href="/" class="text-black inline-flex items-center gap-3">
                     <img src="/logo-simple.png" alt="Arking" class="w-10 h-10" />
-                    <span class="font-bold font-display text-sky-900">Arking</span>
+                    <span class="font-bold font-display text-blue-900">Arking</span>
                 </a>
                 <nav class="flex items-center">
-                    <a
-                        class="px-4 py-2 text-sm font-medium text-sky-600 hover:text-accent-400"
-                        href="/">Inicio</a
-                    >
+                    <NavLink title="Inicio" href="/" />
                 </nav>
             </div>
         </div>
@@ -57,11 +55,15 @@ const categories = Array.from(new Set(projects.map((p) => p.data.category)));
                         <h1
                             class="text-4xl lg:text-6xl font-light text-gray-900 mb-6 tracking-tight"
                         >
-                            Todos los<span class="block text-gradient font-medium">Proyectos</span>
+                            Nuestros<span class="block text-gradient font-medium">Proyectos</span>
                         </h1>
                     </div><p class="text-lg lg:text-xl text-gray-600 font-light leading-relaxed">
-                        Explora nuestra colección completa de proyectos arquitectónicos, desde
-                        residencias exclusivas hasta desarrollos urbanos innovadores.
+                        Nos enorgullece transformar ideas en espacios funcionales y estéticos,
+                        adaptados a las necesidades de nuestros clientes.<br />
+
+                        Aquí te mostramos algunos de nuestros trabajos más recientes, donde la
+                        planificación, el diseño y la ejecución se unen para crear construcciones
+                        que marcan la diferencia.
                     </p>
                 </div>
             </section>
