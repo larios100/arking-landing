@@ -97,6 +97,7 @@ const categories = Array.from(new Set(projects.map((p) => p.data.category)));
                                 decoding="async"
                                 class="object-cover w-full h-full group-hover:scale-105 transition-transform duration-700 ease-out"
                                 src={project.data.image}
+                                transition:name={project.slug}
                                 style="color: transparent;"
                             />
                             <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all duration-500" />
