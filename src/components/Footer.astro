@@ -1,147 +1,134 @@
 ---
+import { BUSINESS } from '../consts';
 
+const services = ['Arquitectura', 'Construcción', 'Diseño', 'Urbanización'];
+const navigation = [
+    { title: 'Estudio', href: '/#About' },
+    { title: 'Obra', href: '/#Projects' },
+    { title: 'Clientes', href: '/#Customers' },
+    { title: 'Contacto', href: '/#Contact' },
+];
+const year = new Date().getFullYear();
 ---
 
-<footer id="contacto" class="py-20 bg-white border-t border-gray-100">
-    <div class="container mx-auto px-6 lg:px-8">
-        <div class="grid lg:grid-cols-4 gap-12">
-            <div class="lg:col-span-2 space-y-6">
-                <div class="flex items-center space-x-3">
-                    <div
-                        class="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-blue-600 to-blue-700"
-                    >
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="24"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            class="lucide lucide-building2 h-5 w-5 text-white"
-                            ><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"></path><path
-                                d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"></path><path
-                                d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"></path><path
-                                d="M10 6h4"></path><path d="M10 10h4"></path><path d="M10 14h4"
-                            ></path><path d="M10 18h4"></path></svg
-                        >
-                    </div><div class="text-xl font-light tracking-wide">
-                        <span class="text-blue-600 font-medium ml-2">ARKING</span>
-                    </div>
-                </div><p class="text-gray-600 leading-relaxed max-w-md">
-                    Redefiniendo el concepto de hogar a través de arquitectura contemporánea y
-                    construcción de excelencia.
-                </p><div class="flex space-x-4">
+<footer class="border-t border-white/10 bg-brand-ink px-6 pb-11 pt-16 text-white lg:px-20 lg:pt-[90px]">
+    <div class="mx-auto w-full max-w-[1560px]">
+        <div class="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-12 lg:gap-12">
+            <div class="flex flex-col gap-6 lg:col-span-5">
+                <img
+                    src="/img/logo-blanco.png"
+                    alt="Arking"
+                    width="506"
+                    height="422"
+                    loading="lazy"
+                    class="h-[52px] w-auto self-start opacity-95"
+                />
+                <p class="max-w-[380px] text-pretty text-[15px] leading-[1.7] text-white/60">
+                    Arquitectos y constructores en Colima, México. Diseño y construcción de casa
+                    habitación y espacio comercial.
+                </p>
+                <div class="flex gap-3">
                     <a
                         href="https://www.instagram.com/arking.construccion"
-                        class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center hover:bg-gray-200 transition-colors"
-                        ><svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="24"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            class="lucide lucide-instagram h-4 w-4 text-gray-600"
-                            ><rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect><path
-                                d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line
-                                x1="17.5"
-                                x2="17.51"
-                                y1="6.5"
-                                y2="6.5"></line></svg
-                        ></a
-                    ><a
-                        href="https://www.facebook.com/profile.php?id=61573052413049"
-                        class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center hover:bg-gray-200 transition-colors"
-                        ><svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="24"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            class="lucide lucide-facebook h-4 w-4 text-gray-600"
-                            ><path
-                                d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"
-                            ></path></svg
-                        ></a
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="Instagram de Arking"
+                        class="flex h-11 w-11 items-center justify-center border border-white/20 text-white transition-colors hover:border-white hover:bg-white/10"
                     >
+                        <svg
+                            width="17"
+                            height="17"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="1.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        >
+                            <rect width="20" height="20" x="2" y="2" rx="5"></rect>
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37Z"></path>
+                            <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
+                        </svg>
+                    </a>
+                    <a
+                        href="https://www.facebook.com/profile.php?id=61573052413049"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="Facebook de Arking"
+                        class="flex h-11 w-11 items-center justify-center border border-white/20 text-white transition-colors hover:border-white hover:bg-white/10"
+                    >
+                        <svg
+                            width="17"
+                            height="17"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="1.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        >
+                            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"
+                            ></path>
+                        </svg>
+                    </a>
                 </div>
-            </div><div class="space-y-6">
-                <h4 class="font-medium text-gray-900">Servicios</h4><ul
-                    class="space-y-3 text-gray-600"
-                >
-                    <li class="hover:text-gray-900 transition-colors cursor-pointer">
-                        Arquitectura
-                    </li><li class="hover:text-gray-900 transition-colors cursor-pointer">
-                        Construcción
-                    </li><li class="hover:text-gray-900 transition-colors cursor-pointer">
-                        Diseño
-                    </li><li class="hover:text-gray-900 transition-colors cursor-pointer">
-                        Urbanización
-                    </li>
-                </ul>
-            </div><div class="space-y-6">
-                <h4 class="font-medium text-gray-900">Contacto</h4><ul
-                    class="space-y-3 text-gray-600"
-                >
-                    <li class="flex items-center hover:text-gray-900 transition-colors">
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="24"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            class="lucide lucide-phone h-4 w-4 mr-3"
-                            ><path
-                                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
-                            ></path></svg
-                        ><span>+52 312 405 58 05</span>
-                    </li><li class="flex items-center hover:text-gray-900 transition-colors">
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="24"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            class="lucide lucide-map-pin h-4 w-4 mr-3"
-                            ><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle
-                                cx="12"
-                                cy="10"
-                                r="3"></circle></svg
-                        ><span>Av. V. Carranza #1727 int. 8 </span>
-                    </li>
-                    <li class="flex items-center hover:text-gray-900 transition-colors ml-6">
-                        <span>Colonia Residencial Esmeralda CP28017</span>
-                    </li>
-                    <li class="flex items-center hover:text-gray-900 transition-colors ml-6">
-                        <span>Colima, Mexico</span>
-                    </li>
+            </div>
+
+            <div class="flex flex-col gap-[18px] lg:col-span-2">
+                <h4 class="label text-white/50">Servicios</h4>
+                <ul class="flex flex-col gap-3">
+                    {services.map((service) => <li class="text-[15px] text-white/[0.82]">{service}</li>)}
                 </ul>
             </div>
-        </div><div
-            class="mt-16 pt-8 border-t border-gray-100 flex flex-col lg:flex-row justify-between items-center"
+
+            <div class="flex flex-col gap-[18px] lg:col-span-2">
+                <h4 class="label text-white/50">Navegación</h4>
+                <ul class="flex flex-col gap-3">
+                    {
+                        navigation.map((item) => (
+                            <li>
+                                <a
+                                    href={item.href}
+                                    class="text-[15px] text-white/[0.82] transition-colors hover:text-white"
+                                >
+                                    {item.title}
+                                </a>
+                            </li>
+                        ))
+                    }
+                </ul>
+            </div>
+
+            <div class="flex flex-col gap-[18px] lg:col-span-3">
+                <h4 class="label text-white/50">Oficina</h4>
+                <p class="text-[15px] leading-[1.7] text-white/[0.82]">
+                    {BUSINESS.street}<br />{BUSINESS.neighborhood}<br />CP {BUSINESS.postalCode} ·{
+                        ' '
+                    }{BUSINESS.city}, México
+                </p>
+                <a
+                    href={`tel:${BUSINESS.phoneE164}`}
+                    class="text-[15px] text-white/[0.82] transition-colors hover:text-white"
+                >
+                    {BUSINESS.phone}
+                </a>
+                <a
+                    href={`mailto:${BUSINESS.email}`}
+                    class="text-[15px] text-white/[0.82] transition-colors hover:text-white"
+                >
+                    {BUSINESS.email}
+                </a>
+                <span class="text-[15px] leading-[1.7] text-white/50">{BUSINESS.hours}</span>
+            </div>
+        </div>
+
+        <div
+            class="mt-12 flex flex-col gap-3 border-t border-white/10 pt-7 sm:flex-row sm:items-center sm:justify-between lg:mt-[70px]"
         >
-            <p class="text-sm text-gray-500">© 2025. Arking. Todos los derechos reservados.</p><div
-                class="flex space-x-6 text-sm text-gray-500 mt-4 lg:mt-0"
-            >
-            </div>
+            <span class="text-xs text-white/40">
+                © {year} Arking. Todos los derechos reservados.
+            </span>
+            <span class="text-xs uppercase tracking-wider2 text-white/40">Colima · México</span>
         </div>
     </div>
 </footer>

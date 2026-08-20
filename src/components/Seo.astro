@@ -1,0 +1,64 @@
+---
+import { SITE } from '../consts';
+
+interface Props {
+    title: string;
+    description: string;
+    /** Ruta o URL de la imagen para compartir en redes. */
+    image?: string;
+    type?: 'website' | 'article' | 'profile';
+    noindex?: boolean;
+    /** Uno o varios objetos JSON-LD. */
+    schema?: Record<string, unknown> | Record<string, unknown>[];
+}
+
+const {
+    title,
+    description,
+    image = SITE.defaultImage,
+    type = 'website',
+    noindex = false,
+    schema,
+} = Astro.props;
+
+const site = Astro.site ?? new URL(SITE.url);
+
+// Canonical con barra final, igual que las URLs que emite el sitemap.
+const pathname = Astro.url.pathname.endsWith('/') ? Astro.url.pathname : `${Astro.url.pathname}/`;
+const canonical = new URL(pathname, site).href;
+const imageUrl = new URL(image, site).href;
+
+const schemas = schema ? (Array.isArray(schema) ? schema : [schema]) : [];
+---
+
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+<meta
+    name="robots"
+    content={noindex ? 'noindex, nofollow' : 'index, follow, max-image-preview:large'}
+/>
+
+<!-- Open Graph -->
+<meta property="og:type" content={type} />
+<meta property="og:site_name" content={SITE.name} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:image" content={imageUrl} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content={title} />
+<meta property="og:locale" content={SITE.locale} />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={imageUrl} />
+
+{
+    schemas.map((entry) => (
+        <script type="application/ld+json" set:html={JSON.stringify(entry)} />
+    ))
+}

@@ -1,0 +1,32 @@
+---
+import Header from '@components/Header.astro';
+import Layout from '@layouts/Layout.astro';
+---
+
+<Layout
+    title="Página no encontrada | Arking"
+    description="La página que buscas no existe o cambió de dirección."
+    noindex
+>
+    <Header variant="solid" />
+
+    <main class="flex min-h-[70vh] items-center bg-brand-paper px-6 py-24 lg:px-20">
+        <div class="mx-auto w-full max-w-[1560px]">
+            <div class="flex max-w-2xl flex-col gap-6">
+                <span class="label text-brand-slate">Error 404</span>
+                <h1
+                    class="font-display text-[clamp(3rem,7vw,5.5rem)] leading-[0.96] tracking-[-0.02em] text-brand-navy"
+                >
+                    Esta página<br /><em class="italic">no existe</em>
+                </h1>
+                <p class="text-pretty text-[17px] leading-[1.75] text-brand-slate">
+                    Puede que el enlace esté mal escrito o que la página haya cambiado de dirección.
+                </p>
+                <div class="flex flex-col gap-3 pt-2 sm:flex-row sm:gap-4">
+                    <a href="/" class="btn btn-solid">Ir al inicio</a>
+                    <a href="/projects" class="btn btn-outline">Ver la obra</a>
+                </div>
+            </div>
+        </div>
+    </main>
+</Layout>

@@ -1,202 +1,200 @@
 ---
 import ContactButton from '@components/ContactButton.astro';
-import NavLink from '@components/NavLink.astro';
+import Header from '@components/Header.astro';
 import Layout from '@layouts/Layout.astro';
 import { getCollection } from 'astro:content';
-const projects = await getCollection('projects');
+import { breadcrumbSchema } from '../lib/schema';
+import { thumb } from '../lib/images';
+
+const projects = (await getCollection('projects')).sort(
+    (a, b) => (a.data.order ?? 99) - (b.data.order ?? 99)
+);
 const categories = Array.from(new Set(projects.map((p) => p.data.category)));
+
+const breadcrumb = breadcrumbSchema([
+    { name: 'Inicio', path: '/' },
+    { name: 'Proyectos', path: '/projects/' },
+]);
 ---
 
-<style>
-    .filter-bar {
-        display: flex;
-        gap: 1rem;
-        justify-content: center;
-        margin-bottom: 2rem;
-        flex-wrap: wrap;
-    }
-    .filter-btn {
-        padding: 0.5rem 1.5rem;
-        border-radius: 999px;
-        border: 1px solid #e5e7eb;
-        background: #fff;
-        color: #222;
-        font-size: 1rem;
-        cursor: pointer;
-        transition:
-            background 0.2s,
-            color 0.2s;
-    }
-    .filter-btn.active {
-        background: #3b82f6;
-        color: #fff;
-        border-color: #3b82f6;
-    }
-</style>
-<Layout title="Arking - Proyectos">
-    <header class="border-b border-black/5 fixed top-0 z-50 w-full bg-white backdrop-blur">
-        <div class="w-full mx-auto container">
-            <div class="relative flex flex-row w-full py-5 mx-auto items-center justify-between">
-                <a href="/" class="text-black inline-flex items-center gap-3">
-                    <img src="/logo-simple.png" alt="Arking" class="w-10 h-10" />
-                    <span class="font-bold font-display text-blue-900">Arking</span>
-                </a>
-                <nav class="flex items-center">
-                    <NavLink title="Inicio" href="/" />
-                </nav>
-            </div>
-        </div>
-    </header>
-    <main class="pt-8 bg-white min-h-screen">
-        <div class="container mx-auto px-6 lg:px-8">
-            <section class="py-20 bg-gradient-to-br from-gray-50 to-white" data-aos="fade-up">
-                <div class="container mx-auto px-6 lg:px-8">
-                    <div class="text-center max-w-4xl mx-auto animate-fadeInUp">
-                        <h1
-                            class="text-4xl lg:text-6xl font-light text-gray-900 mb-6 tracking-tight"
-                        >
-                            Nuestros<span class="block text-gradient font-medium">Proyectos</span>
-                        </h1>
-                    </div><p class="text-lg lg:text-xl text-gray-600 font-light leading-relaxed">
-                        Nos enorgullece transformar ideas en espacios funcionales y estéticos,
-                        adaptados a las necesidades de nuestros clientes.<br />
+<Layout
+    title="Proyectos de arquitectura y construcción en Colima | Arking"
+    description={`Conoce ${projects.length} proyectos de casa habitación y espacio comercial construidos por Arking en Colima, México: superficie, acabados y galería de cada obra.`}
+    schema={breadcrumb}
+>
+    <Header variant="solid" active="Obra" />
 
-                        Aquí te mostramos algunos de nuestros trabajos más recientes, donde la
-                        planificación, el diseño y la ejecución se unen para crear construcciones
-                        que marcan la diferencia.
-                    </p>
-                </div>
-            </section>
-        </div>
-        <div class="filter-bar" data-aos="fade-up">
-            <button class="filter-btn active">Todos</button>
-            {
-                categories.map((cat) => (
-                    <button class="filter-btn" data-category={cat}>
-                        {cat}
-                    </button>
-                ))
-            }
-        </div>
-        <section id="projects-list" class="grid lg:grid-cols-4 gap-8 lg:gap-12 max-w-7xl mx-auto">
-            {
-                projects.map((project) => (
-                    <a
-                        href={`/projects/${project.slug}`}
-                        class="group block animate-fadeInUp"
-                        style="animation-delay: 0s;"
-                        data-category={project.data.category}
+    <main>
+        <!-- Encabezado -->
+        <section class="bg-brand-paper pb-12 pt-16 lg:pb-16 lg:pt-24">
+            <div class="mx-auto w-full max-w-[1560px] px-6 lg:px-20">
+                <div class="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-12">
+                    <div class="flex flex-col gap-5 lg:col-span-7" data-aos="fade-up">
+                        <span class="label text-brand-slate">Obra</span>
+                        <h1
+                            class="font-display text-[clamp(3rem,7vw,5.5rem)] leading-[0.96] tracking-[-0.02em] text-brand-navy"
+                        >
+                            Nuestros<br /><em class="italic">proyectos</em>
+                        </h1>
+                    </div>
+                    <div
+                        class="flex flex-col gap-5 lg:col-span-5 lg:justify-end lg:pb-3"
                         data-aos="fade-up"
                     >
-                        <div class="relative overflow-hidden bg-gray-50 aspect-[4/3] rounded-2xl">
-                            <img
-                                alt={project.data.title}
-                                loading="lazy"
-                                width="800"
-                                height="600"
-                                decoding="async"
-                                class="object-cover w-full h-full group-hover:scale-105 transition-transform duration-700 ease-out"
-                                src={project.data.image}
-                                transition:name={project.slug}
-                                style="color: transparent;"
-                            />
-                            <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all duration-500" />
-                            <div class="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black/60 via-black/20 to-transparent">
-                                <div class="text-white transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
-                                    <h3 class="text-2xl lg:text-3xl font-light mb-2 tracking-wide">
-                                        {project.data.title}
-                                    </h3>
-                                    <div class="flex items-center text-white/80 text-sm font-light tracking-wide">
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            width="24"
-                                            height="24"
-                                            viewBox="0 0 24 24"
-                                            fill="none"
-                                            stroke="currentColor"
-                                            stroke-width="2"
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                            class="lucide lucide-map-pin h-4 w-4 mr-2 opacity-70"
-                                        >
-                                            <>
-                                                <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
-                                                <circle cx="12" cy="10" r="3" />
-                                            </>
-                                        </svg>
-                                        <span>{project.data.specifications.location}</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="absolute top-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                <div class="w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center">
-                                    <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        width="24"
-                                        height="24"
-                                        viewBox="0 0 24 24"
-                                        fill="none"
-                                        stroke="currentColor"
-                                        stroke-width="2"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        class="lucide lucide-arrow-right h-4 w-4 text-white"
-                                    >
-                                        <>
-                                            <path d="M5 12h14" />
-                                            <path d="m12 5 7 7-7 7" />
-                                        </>
-                                    </svg>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                ))
-            }
+                        <p class="text-pretty text-[17px] leading-[1.75] text-brand-slate">
+                            Transformamos ideas en espacios funcionales y estéticos, adaptados a las
+                            necesidades de cada cliente. Estos son algunos de nuestros trabajos más
+                            recientes, donde la planificación, el diseño y la ejecución se unen.
+                        </p>
+                    </div>
+                </div>
+            </div>
         </section>
-        <section class="py-20 mt-20 lg:py-32 bg-gray-900 text-white" data-aos="fade-up">
-            <div class="container mx-auto px-6 lg:px-8 text-center">
-                <div class="max-w-3xl mx-auto space-y-8 animate-fadeInUp">
-                    <h2 class="text-3xl lg:text-5xl font-light leading-tight">
-                        ¿No encuentras lo que<span class="block font-medium">buscas?</span>
-                    </h2><p class="text-xl text-gray-300 leading-relaxed font-light">
+
+        <!-- Filtros -->
+        <section class="border-t border-line bg-brand-paper">
+            <div class="mx-auto w-full max-w-[1560px] px-6 lg:px-20">
+                <div class="flex flex-wrap items-center gap-3 py-6 lg:py-8" data-aos="fade-up">
+                    <span class="label mr-2 hidden text-brand-slate lg:inline">Filtrar</span>
+                    <button
+                        type="button"
+                        class="filter-btn is-active"
+                        data-category=""
+                    >
+                        Todos
+                    </button>
+                    {
+                        categories.map((category) => (
+                            <button type="button" class="filter-btn" data-category={category}>
+                                {category}
+                            </button>
+                        ))
+                    }
+                </div>
+            </div>
+        </section>
+
+        <!-- Listado -->
+        <section class="border-t border-line bg-brand-paper2 py-14 lg:py-20">
+            <div class="mx-auto w-full max-w-[1560px] px-6 lg:px-20">
+                <div
+                    id="projects-list"
+                    class="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3 lg:gap-x-8 lg:gap-y-14"
+                >
+                    {
+                        projects.map((project, index) => (
+                            <a
+                                href={`/projects/${project.slug}`}
+                                class="group flex flex-col gap-4"
+                                data-category={project.data.category}
+                                data-aos="fade-up"
+                            >
+                                <div class="relative aspect-[4/3] overflow-hidden bg-[#dcd9d2]">
+                                    <img
+                                        alt={project.data.title}
+                                        loading="lazy"
+                                        width="800"
+                                        height="600"
+                                        decoding="async"
+                                        class="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+                                        src={thumb(project.data.image)}
+                                    />
+                                    <span class="absolute left-0 top-5 inline-flex h-8 items-center bg-brand-navy px-4 text-[10px] uppercase tracking-label text-white">
+                                        {project.data.specifications.status}
+                                    </span>
+                                </div>
+                                <div class="flex items-start justify-between gap-4 border-t border-line pt-4">
+                                    <div class="flex flex-col gap-1.5">
+                                        <span class="font-display text-[26px] leading-none text-brand-navy">
+                                            {project.data.title}
+                                        </span>
+                                        <span class="text-xs tracking-[0.1em] text-brand-slate">
+                                            {project.data.category} ·{' '}
+                                            {project.data.specifications.area} ·{' '}
+                                            {project.data.specifications.year}
+                                        </span>
+                                    </div>
+                                    <span class="pt-1 font-display text-lg text-brand-navy/40">
+                                        {String(index + 1).padStart(2, '0')}
+                                    </span>
+                                </div>
+                            </a>
+                        ))
+                    }
+                </div>
+
+                <p id="projects-empty" class="hidden py-16 text-center text-brand-slate">
+                    No hay proyectos en esta categoría por ahora.
+                </p>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="bg-brand-navy py-20 text-white lg:py-28" data-aos="fade-up">
+            <div class="mx-auto w-full max-w-[1560px] px-6 text-center lg:px-20">
+                <div class="mx-auto flex max-w-3xl flex-col items-center gap-7">
+                    <h2
+                        class="text-pretty font-display text-[clamp(2.5rem,5.5vw,4rem)] leading-[1.02] tracking-[-0.02em]"
+                    >
+                        ¿No encuentras lo que<br /><em class="italic">buscas?</em>
+                    </h2>
+                    <p class="text-pretty text-[17px] leading-[1.7] text-white/[0.72] lg:text-lg">
                         Cada proyecto es único. Hablemos sobre cómo podemos crear algo especial para
                         ti.
-                    </p><div class="flex flex-col sm:flex-row gap-4 justify-center pt-8">
-                        <ContactButton />
-                    </div>
+                    </p>
+                    <ContactButton variant="light" class="mt-2" />
                 </div>
             </div>
         </section>
     </main>
 </Layout>
 
+<style is:global>
+    .filter-btn {
+        display: inline-flex;
+        align-items: center;
+        height: 44px;
+        padding: 0 1.25rem;
+        border: 1px solid rgba(0, 36, 77, 0.16);
+        background: transparent;
+        color: #3d5978;
+        font-size: 13px;
+        letter-spacing: 0.06em;
+        cursor: pointer;
+        transition:
+            background-color 0.25s ease,
+            border-color 0.25s ease,
+            color 0.25s ease;
+    }
+    .filter-btn:hover {
+        border-color: #00244d;
+        color: #00244d;
+    }
+    .filter-btn.is-active {
+        background: #00244d;
+        border-color: #00244d;
+        color: #ffffff;
+    }
+</style>
+
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        document.querySelectorAll('.filter-btn').forEach((btn) => {
-            btn.addEventListener('click', function () {
-                filterProjects(btn);
+    const buttons = document.querySelectorAll<HTMLButtonElement>('.filter-btn');
+    const cards = document.querySelectorAll<HTMLElement>('#projects-list > a');
+    const empty = document.getElementById('projects-empty');
+
+    buttons.forEach((button) => {
+        button.addEventListener('click', () => {
+            const category = button.dataset.category ?? '';
+            let visible = 0;
+
+            cards.forEach((card) => {
+                const matches = !category || card.dataset.category === category;
+                card.style.display = matches ? '' : 'none';
+                if (matches) visible += 1;
             });
+
+            buttons.forEach((other) => other.classList.toggle('is-active', other === button));
+            empty?.classList.toggle('hidden', visible > 0);
         });
     });
-    // Filtrado de proyectos por categoría (JS simple)
-    function filterProjects(btn: any) {
-        const category = btn.getAttribute('data-category') || '';
-        console.log(`Filtrando proyectos por categoría: ${category}`);
-        const cards = document.querySelectorAll<HTMLElement>('#projects-list > a');
-        cards.forEach((card) => {
-            const cat = card.getAttribute('data-category');
-            if (!category || cat === category) {
-                card.style.display = '';
-            } else {
-                card.style.display = 'none';
-            }
-        });
-        document.querySelectorAll('.filter-btn').forEach((btn) => {
-            btn.classList.remove('active');
-            if ((category === '' && btn.textContent === 'Todos') || btn.textContent === category) {
-                btn.classList.add('active');
-            }
-        });
-    }
 </script>

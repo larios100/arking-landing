@@ -1,40 +1,171 @@
 ---
 import FloatingButtons from '@components/FloatingButtons.astro';
 import Footer from '@components/Footer.astro';
+import Seo from '@components/Seo.astro';
+import { SITE } from '../consts';
+
 interface Props {
-    title: string;
+    title?: string;
+    description?: string;
+    image?: string;
+    type?: 'website' | 'article' | 'profile';
+    noindex?: boolean;
+    schema?: Record<string, unknown> | Record<string, unknown>[];
 }
 
-const { title } = Astro.props;
+const {
+    title = SITE.defaultTitle,
+    description = SITE.defaultDescription,
+    image,
+    type,
+    noindex,
+    schema,
+} = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={SITE.lang}>
     <head>
         <meta charset="UTF-8" />
-        <meta name="description" content="Construcción y diseño de espacios únicos" />
-        <meta name="viewport" content="width=device-width" />
-        <link rel="icon" type="image/svg+xml" href="/logo-simple.png" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="theme-color" content="#00244d" />
+        <link rel="icon" type="image/png" href="/logo-simple.png" />
+        <link rel="apple-touch-icon" href="/logo-simple.png" />
         <meta name="generator" content={Astro.generator} />
-        <title>{title}</title>
-        <script src="https://kit.fontawesome.com/34bf7c2d20.js" crossorigin="anonymous"></script>
+
+        <Seo
+            title={title}
+            description={description}
+            image={image}
+            type={type}
+            noindex={noindex}
+            schema={schema}
+        />
+
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link rel="preconnect" href="https://unpkg.com" />
+        <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Archivo:wght@400;500;600&display=swap"
+        />
+        <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     </head>
-    <body>
+    <body class="bg-brand-paper font-sans text-brand-navy antialiased">
         <slot />
         <Footer />
         <FloatingButtons />
-        <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-        <script is:inline src="https://unpkg.com/aos@next/dist/aos.js"></script>
+        <script is:inline defer src="https://unpkg.com/aos@next/dist/aos.js"></script>
         <script is:inline>
-            AOS.init();
+            // Los scripts con defer corren antes de DOMContentLoaded, así que AOS ya existe aquí.
+            document.addEventListener('DOMContentLoaded', () => {
+                if (typeof AOS !== 'undefined') {
+                    AOS.init({ duration: 700, easing: 'ease-out', once: true, offset: 60 });
+                }
+            });
         </script>
     </body>
 </html>
+
 <style is:global>
-    .text-gradient {
-        background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
+    html {
+        scroll-behavior: smooth;
+    }
+
+    ::selection {
+        background: #00244d;
+        color: #ffffff;
+    }
+
+    /* Etiqueta de sección: 01 — El estudio */
+    .label {
+        font-size: 11px;
+        font-weight: 500;
+        line-height: 1.4;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+    }
+
+    /* Botones. Sin radio ni sombra: el sistema se apoya en la línea y el aire. */
+    .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.75rem;
+        height: 56px;
+        padding: 0 2rem;
+        font-size: 14px;
+        letter-spacing: 0.06em;
+        white-space: nowrap;
+        transition:
+            background-color 0.25s ease,
+            border-color 0.25s ease,
+            color 0.25s ease;
+    }
+    .btn svg {
+        flex-shrink: 0;
+    }
+    .btn-solid {
+        background: #00244d;
+        color: #ffffff;
+        font-weight: 500;
+    }
+    .btn-solid:hover {
+        background: #04182f;
+    }
+    .btn-light {
+        background: #ffffff;
+        color: #00244d;
+        font-weight: 500;
+    }
+    .btn-light:hover {
+        background: #eeece7;
+    }
+    .btn-outline {
+        border: 1px solid rgba(0, 36, 77, 0.22);
+        color: #00244d;
+    }
+    .btn-outline:hover {
+        border-color: #00244d;
+        background: rgba(0, 36, 77, 0.04);
+    }
+    .btn-outline-light {
+        border: 1px solid rgba(255, 255, 255, 0.34);
+        color: #ffffff;
+    }
+    .btn-outline-light:hover {
+        border-color: #ffffff;
+        background: rgba(255, 255, 255, 0.08);
+    }
+
+    /* Enlace de texto con subrayado azul */
+    .link-rule {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.625rem;
+        padding-bottom: 5px;
+        font-size: 14px;
+        letter-spacing: 0.04em;
+        color: #00244d;
+        border-bottom: 1px solid #1a75cf;
+        transition: color 0.25s ease;
+    }
+    .link-rule:hover {
+        color: #1a75cf;
+    }
+    .link-rule-light {
+        color: #ffffff;
+        border-bottom-color: rgba(255, 255, 255, 0.45);
+    }
+    .link-rule-light:hover {
+        color: rgba(255, 255, 255, 0.75);
+        border-bottom-color: #ffffff;
+    }
+
+    @media (max-width: 640px) {
+        .btn {
+            height: 52px;
+            padding: 0 1.5rem;
+        }
     }
 </style>

@@ -2,7 +2,8 @@
 slug: 'casa-yukon'
 title: 'Casa Yukon'
 image: '/img/projects/yukon-1.webp'
-price: '$1,2000,000.00'
+price: '$1,200,000.00'
+order: 6
 category: 'Casa habitación'
 specifications:
     area: '120 m²'

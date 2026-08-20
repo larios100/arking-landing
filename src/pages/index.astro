@@ -5,73 +5,17 @@ import About from '@components/About.astro';
 import TopProjects from '@components/TopProjects.astro';
 import Contact from '@components/Contact.astro';
 import Customers from '@components/Customers.astro';
-import NavLink from '@components/NavLink.astro';
+import Header from '@components/Header.astro';
+import { SITE } from '../consts';
+import { businessSchema, websiteSchema } from '../lib/schema';
 ---
 
-<style>
-    .bg-hero {
-        background-image: url('/img/home.webp');
-    }
-    @keyframes fadein {
-        from {
-            opacity: 0;
-        }
-        to {
-            opacity: 1;
-        }
-    }
-</style>
-<Layout title="Arking - Diseño y Construcción">
-    <header class="border-b border-black/5 fixed top-0 z-50 w-full bg-white backdrop-blur">
-        <div class="w-full mx-auto container">
-            <div
-                class="relative flex flex-col w-full py-5 mx-auto md:items-center md:justify-between md:flex-row"
-                id="menu-container"
-            >
-                <div class="flex flex-row items-center justify-between lg:justify-start">
-                    <a href="/" class="text-black inline-flex items-center gap-3">
-                        <img src="/logo-simple.png" alt="Arking" class="w-10 h-10" />
-                        <span class="font-bold font-display text-blue-800">Arking</span>
-                    </a>
-                    <button
-                        id="menu-toggle"
-                        class="inline-flex items-center justify-center p-2 text-gray-400 hover:text-black focus:outline-none focus:text-black lg:hidden"
-                        aria-label="Abrir menú"
-                    >
-                        <svg class="w-6 h-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
-                            <path
-                                id="menu-icon-open"
-                                class="inline-flex"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
-                                d="M4 6h16M4 12h16M4 18h16"></path>
-                            <path
-                                id="menu-icon-close"
-                                class="hidden"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
-                                d="M6 18L18 6M6 6l12 12"></path>
-                        </svg>
-                    </button>
-                </div>
-                <nav
-                    id="main-menu"
-                    class="flex-col items-center flex-grow hidden md:pb-0 md:flex md:justify-end md:flex-row"
-                >
-                    <!-- -->
-                    <div class="lg:ml-auto">
-                        <NavLink title="Inicio" href="/#Home" />
-                        <NavLink title="Quienes somos" href="/#About" />
-                        <NavLink title="Proyectos" href="/#Projects" />
-                        <NavLink title="Nuestros clientes" href="/#Customers" />
-                        <NavLink title="Contáctanos" href="/#Contact" />
-                    </div>
-                </nav>
-            </div>
-        </div>
-    </header>
+<Layout
+    title={SITE.defaultTitle}
+    description={SITE.defaultDescription}
+    schema={[businessSchema(), websiteSchema()]}
+>
+    <Header variant="overlay" />
     <main id="main-content">
         <Hero />
         <About />
@@ -80,60 +24,3 @@ import NavLink from '@components/NavLink.astro';
         <Contact />
     </main>
 </Layout>
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        // Interacción menú móvil (abre/cierra)
-        const menuToggle = document.getElementById('menu-toggle');
-        const mainMenu = document.getElementById('main-menu');
-        const iconOpen = document.getElementById('menu-icon-open');
-        const iconClose = document.getElementById('menu-icon-close');
-        if (menuToggle && mainMenu && iconOpen && iconClose) {
-            menuToggle.addEventListener('click', function () {
-                const isOpen = mainMenu.classList.contains('flex');
-                if (isOpen) {
-                    mainMenu.classList.remove('flex');
-                    mainMenu.classList.add('hidden');
-                    iconOpen.classList.remove('hidden');
-                    iconClose.classList.add('hidden');
-                } else {
-                    mainMenu.classList.remove('hidden');
-                    mainMenu.classList.add('flex');
-                    iconOpen.classList.add('hidden');
-                    iconClose.classList.remove('hidden');
-                }
-            });
-            // Cierra el menú al hacer click en un enlace (en móvil)
-            mainMenu.querySelectorAll('a').forEach((link) => {
-                link.addEventListener('click', function () {
-                    if (window.innerWidth < 1024) {
-                        mainMenu.classList.remove('flex');
-                        mainMenu.classList.add('hidden');
-                        iconOpen.classList.remove('hidden');
-                        iconClose.classList.add('hidden');
-                    }
-                });
-            });
-        }
-
-        // Scroll suave para los enlaces del menú, dejando espacio por el header fijo
-        const menuLinks = document.querySelectorAll('a[href^="/#"]');
-        const header = document.querySelector('header');
-        const headerHeight = header ? header.offsetHeight : 80; // Ajusta si tu header es más alto/bajo
-        menuLinks.forEach((link) => {
-            link.addEventListener('click', function (e) {
-                const href = link instanceof HTMLAnchorElement ? link.getAttribute('href') : '';
-                if (!href) return;
-                const hash = href.split('#')[1];
-                const target = document.getElementById(hash);
-                if (target) {
-                    e.preventDefault();
-                    const elementTop = target.getBoundingClientRect().top + window.pageYOffset;
-                    window.scrollTo({
-                        top: elementTop - headerHeight - 10, // 10px extra de margen
-                        behavior: 'smooth',
-                    });
-                }
-            });
-        });
-    });
-</script>

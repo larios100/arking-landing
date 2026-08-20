@@ -6,6 +6,8 @@ const projects = defineCollection({
     title: z.string(),
     image: z.string(),
     price: z.string(),
+    // Orden en el índice de obra. Sin él, el proyecto se manda al final.
+    order: z.number().optional(),
     category: z.string(),
     specifications: z.object({
       area: z.string(),

@@ -1,308 +1,230 @@
 ---
+import { getCollection } from 'astro:content';
+import { thumb } from '../lib/images';
 
+const projects = (await getCollection('projects')).sort(
+    (a, b) => (a.data.order ?? 99) - (b.data.order ?? 99)
+);
+
+const years = Array.from(new Set(projects.map((p) => p.data.specifications.year))).sort();
+const yearRange = years.length > 1 ? `${years[0]}–${years[years.length - 1]}` : years[0];
+const featured = projects[0];
+
+const plural = (value: string, one: string, many: string) =>
+    `${value} ${Number(value) === 1 ? one : many}`;
+
+const previewMeta = (project: (typeof projects)[number]) => {
+    const { floors, bedrooms, bathrooms, construction } = project.data.specifications;
+    const isResidential = /casa|habitaci/i.test(project.data.category);
+
+    return [
+        plural(floors, 'nivel', 'niveles'),
+        ...(isResidential
+            ? [plural(bedrooms, 'recámara', 'recámaras'), plural(bathrooms, 'baño', 'baños')]
+            : [`${construction} construidos`]),
+    ].join(' · ');
+};
 ---
 
-<section id="Projects" class="py-16 bg-white" data-aos="fade-up">
-    <div class="container mx-auto px-6 lg:px-8">
-        <div class="text-center mb-20 animate-fadeInUp">
-            <h2 class="text-4xl lg:text-6xl font-light text-gray-900 mb-6 tracking-tight">
-                Proyectos<span class="block text-gradient font-medium">Destacados</span>
-            </h2><p class="text-lg text-gray-500 max-w-2xl mx-auto font-light">
-                Cada proyecto es una expresión única de arquitectura contemporánea
-            </p>
-        </div><div class="grid lg:grid-cols-2 gap-8 lg:gap-12 max-w-7xl mx-auto">
-            <a
-                href="/projects/casa-marmol"
-                class="group block animate-fadeInUp"
-                style="animation-delay: 0s;"
-                data-aos="fade-up"
-                ><div class="relative overflow-hidden bg-gray-50 aspect-[4/3] rounded-2xl">
-                    <img
-                        alt="Casa Marmol"
-                        loading="lazy"
-                        width="800"
-                        height="600"
-                        decoding="async"
-                        data-nimg="1"
-                        class="object-cover w-full h-full group-hover:scale-105 transition-transform duration-700 ease-out"
-                        src="/img/projects/rioja25-1.jpg"
-                        style="color: transparent;"
-                    /><div
-                        class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all duration-500"
-                    >
-                    </div><div
-                        class="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black/60 via-black/20 to-transparent"
-                    >
-                        <div
-                            class="text-white transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500"
+<section id="Projects" class="scroll-mt-24 border-t border-line bg-brand-paper2 py-20 lg:py-[130px]">
+    <div class="mx-auto w-full max-w-[1560px] px-6 lg:px-20">
+        <!-- Encabezado -->
+        <div
+            class="flex flex-col gap-4 pb-10 lg:flex-row lg:items-end lg:justify-between lg:pb-14"
+            data-aos="fade-up"
+        >
+            <div class="flex flex-col gap-4 lg:gap-[22px]">
+                <span class="label text-brand-slate">02 — Obra</span>
+                <h2
+                    class="font-display text-[clamp(2.75rem,6vw,4.75rem)] leading-none tracking-[-0.02em] text-brand-navy"
+                >
+                    Obra seleccionada
+                </h2>
+            </div>
+            <div class="flex items-center gap-4 lg:pb-3">
+                <span class="text-xs uppercase tracking-wider2 text-brand-slate">
+                    {projects.length} proyectos
+                </span>
+                <span class="h-3.5 w-px bg-brand-navy/20"></span>
+                <span class="text-xs uppercase tracking-wider2 text-brand-slate">
+                    Colima, {yearRange}
+                </span>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-12">
+            <!-- Índice -->
+            <div class="flex flex-col lg:col-span-7" id="project-index" data-aos="fade-up">
+                {
+                    projects.map((project, index) => (
+                        <a
+                            href={`/projects/${project.slug}`}
+                            class:list={[
+                                'group flex items-center gap-4 border-t border-line py-6 transition-colors lg:gap-7 lg:py-[30px]',
+                                index === projects.length - 1 && 'border-b',
+                            ]}
+                            data-project-row
+                            data-index={index}
                         >
-                            <h3 class="text-2xl lg:text-3xl font-light mb-2 tracking-wide">
-                                Casa Marmol
-                            </h3><div
-                                class="flex items-center text-white/80 text-sm font-light tracking-wide"
+                            <span
+                                class:list={[
+                                    'w-[26px] font-display text-lg transition-colors lg:w-[34px] lg:text-[22px]',
+                                    index === 0
+                                        ? 'text-brand-blue'
+                                        : 'text-brand-navy/40 group-hover:text-brand-blue',
+                                ]}
                             >
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="24"
-                                    height="24"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    stroke-width="2"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    class="lucide lucide-map-pin h-4 w-4 mr-2 opacity-70"
-                                    ><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"
-                                    ></path><circle cx="12" cy="10" r="3"></circle></svg
-                                ><span>Zona Norte, Ciudad</span>
-                            </div>
-                        </div>
-                    </div><div
-                        class="absolute top-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                    >
-                        <div
-                            class="w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center"
-                        >
+                                {String(index + 1).padStart(2, '0')}
+                            </span>
+                            <span class="flex-grow font-display text-[26px] leading-tight text-brand-navy lg:text-[38px]">
+                                {project.data.title}
+                            </span>
+                            <span class="hidden text-right text-xs tracking-[0.1em] text-brand-slate lg:block lg:w-[250px]">
+                                {project.data.category} · {project.data.specifications.area} ·{' '}
+                                {project.data.specifications.year}
+                            </span>
                             <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="24"
-                                height="24"
+                                width="20"
+                                height="20"
                                 viewBox="0 0 24 24"
                                 fill="none"
                                 stroke="currentColor"
-                                stroke-width="2"
+                                stroke-width="1.4"
                                 stroke-linecap="round"
                                 stroke-linejoin="round"
-                                class="lucide lucide-arrow-right h-4 w-4 text-white"
-                                ><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg
+                                class:list={[
+                                    'shrink-0 transition-colors',
+                                    index === 0
+                                        ? 'text-brand-blue'
+                                        : 'text-brand-navy/[0.28] group-hover:text-brand-blue',
+                                ]}
                             >
-                        </div>
-                    </div>
-                </div></a
-            ><a
-                href="/projects/casa-caliza"
-                class="group block animate-fadeInUp"
-                style="animation-delay: 0.15s;"
-                data-aos="fade-up"
-                ><div class="relative overflow-hidden bg-gray-50 aspect-[4/3] rounded-2xl">
-                    <img
-                        alt="Casa Caliza"
-                        loading="lazy"
-                        width="800"
-                        height="600"
-                        decoding="async"
-                        data-nimg="1"
-                        class="object-cover w-full h-full group-hover:scale-105 transition-transform duration-700 ease-out"
-                        src="/img/projects/rioja21-1.jpg"
-                        style="color: transparent;"
-                    /><div
-                        class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all duration-500"
-                    >
-                    </div><div
-                        class="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black/60 via-black/20 to-transparent"
-                    >
-                        <div
-                            class="text-white transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500"
-                        >
-                            <h3 class="text-2xl lg:text-3xl font-light mb-2 tracking-wide">
-                                Casa Caliza
-                            </h3><div
-                                class="flex items-center text-white/80 text-sm font-light tracking-wide"
-                            >
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="24"
-                                    height="24"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    stroke-width="2"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    class="lucide lucide-map-pin h-4 w-4 mr-2 opacity-70"
-                                    ><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"
-                                    ></path><circle cx="12" cy="10" r="3"></circle></svg
-                                ><span>Valle del Sol</span>
-                            </div>
-                        </div>
-                    </div><div
-                        class="absolute top-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                    >
-                        <div
-                            class="w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center"
-                        >
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="24"
-                                height="24"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="currentColor"
-                                stroke-width="2"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                class="lucide lucide-arrow-right h-4 w-4 text-white"
-                                ><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg
-                            >
-                        </div>
-                    </div>
-                </div></a
-            ><a
-                href="/projects/casa-bego"
-                class="group block animate-fadeInUp"
-                style="animation-delay: 0.3s;"
-                data-aos="fade-up"
-                ><div class="relative overflow-hidden bg-gray-50 aspect-[4/3] rounded-2xl">
-                    <img
-                        alt="Casa Bego"
-                        loading="lazy"
-                        width="800"
-                        height="600"
-                        decoding="async"
-                        data-nimg="1"
-                        class="object-cover w-full h-full group-hover:scale-105 transition-transform duration-700 ease-out"
-                        src="img/projects/mirador-1.jpg"
-                        style="color: transparent;"
-                    /><div
-                        class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all duration-500"
-                    >
-                    </div><div
-                        class="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black/60 via-black/20 to-transparent"
-                    >
-                        <div
-                            class="text-white transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500"
-                        >
-                            <h3 class="text-2xl lg:text-3xl font-light mb-2 tracking-wide">
-                                Casa Bego
-                            </h3><div
-                                class="flex items-center text-white/80 text-sm font-light tracking-wide"
-                            >
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="24"
-                                    height="24"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    stroke-width="2"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    class="lucide lucide-map-pin h-4 w-4 mr-2 opacity-70"
-                                    ><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"
-                                    ></path><circle cx="12" cy="10" r="3"></circle></svg
-                                ><span>Lomas Altas</span>
-                            </div>
-                        </div>
-                    </div><div
-                        class="absolute top-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                    >
-                        <div
-                            class="w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center"
-                        >
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="24"
-                                height="24"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="currentColor"
-                                stroke-width="2"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                class="lucide lucide-arrow-right h-4 w-4 text-white"
-                                ><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg
-                            >
-                        </div>
-                    </div>
-                </div></a
-            ><a
-                href="/projects/local-capire"
-                class="group block animate-fadeInUp"
-                style="animation-delay: 0.45s;"
-                data-aos="fade-up"
-                ><div class="relative overflow-hidden bg-gray-50 aspect-[4/3] rounded-2xl">
-                    <img
-                        alt="Local Capire"
-                        loading="lazy"
-                        width="800"
-                        height="600"
-                        decoding="async"
-                        data-nimg="1"
-                        class="object-cover w-full h-full group-hover:scale-105 transition-transform duration-700 ease-out"
-                        src="/img/projects/local-1.jpg"
-                        style="color: transparent;"
-                    /><div
-                        class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all duration-500"
-                    >
-                    </div><div
-                        class="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black/60 via-black/20 to-transparent"
-                    >
-                        <div
-                            class="text-white transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500"
-                        >
-                            <h3 class="text-2xl lg:text-3xl font-light mb-2 tracking-wide">
-                                Local Capire
-                            </h3><div
-                                class="flex items-center text-white/80 text-sm font-light tracking-wide"
-                            >
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="24"
-                                    height="24"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    stroke-width="2"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    class="lucide lucide-map-pin h-4 w-4 mr-2 opacity-70"
-                                    ><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"
-                                    ></path><circle cx="12" cy="10" r="3"></circle></svg
-                                ><span>Centro Histórico</span>
-                            </div>
-                        </div>
-                    </div><div
-                        class="absolute top-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                    >
-                        <div
-                            class="w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center"
-                        >
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="24"
-                                height="24"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="currentColor"
-                                stroke-width="2"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                class="lucide lucide-arrow-right h-4 w-4 text-white"
-                                ><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg
-                            >
-                        </div>
-                    </div>
-                </div></a
-            >
-        </div><div class="text-center mt-16 animate-fadeInUp animation-delay-800">
-            <a href="/projects"
-                ><button
-                    class="ring-offset-background focus-visible:outline-hidden focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 hover:text-accent-foreground border h-11 rounded-md border-gray-200 text-gray-900 hover:bg-gray-50 px-8 py-4 font-light text-base bg-transparent"
-                    >Ver Todos los Proyectos<svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
+                                <path d="M5 12h14" />
+                                <path d="m12 5 7 7-7 7" />
+                            </svg>
+                        </a>
+                    ))
+                }
+
+                <a href="/projects" class="link-rule mt-8 self-start lg:mt-11">
+                    <span>Ver todos los proyectos</span>
+                    <svg
+                        width="16"
+                        height="16"
                         viewBox="0 0 24 24"
                         fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
+                        stroke="#1a75cf"
+                        stroke-width="1.5"
                         stroke-linecap="round"
                         stroke-linejoin="round"
-                        class="lucide lucide-arrow-right ml-2 h-4 w-4"
-                        ><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg
-                    ></button
-                ></a
-            >
+                    >
+                        <path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path>
+                    </svg>
+                </a>
+            </div>
+
+            <!-- Vista previa del proyecto activo -->
+            <div class="order-first flex flex-col gap-4 lg:order-none lg:col-span-5">
+                <div class="relative h-[280px] w-full overflow-hidden bg-[#dcd9d2] lg:h-[560px]">
+                    {
+                        projects.map((project, index) => (
+                            <img
+                                src={index === 0 ? thumb(project.data.image) : undefined}
+                                data-src={index === 0 ? undefined : thumb(project.data.image)}
+                                alt={project.data.title}
+                                width="900"
+                                height="675"
+                                loading="lazy"
+                                decoding="async"
+                                class:list={[
+                                    'absolute inset-0 h-full w-full object-cover transition-opacity duration-500',
+                                    index === 0 ? 'opacity-100' : 'opacity-0',
+                                ]}
+                                data-preview-image
+                                data-index={index}
+                            />
+                        ))
+                    }
+                    <span
+                        id="preview-status"
+                        class="absolute left-0 top-[26px] z-10 inline-flex h-8 items-center bg-brand-navy px-4 text-[10px] uppercase tracking-label text-white"
+                    >
+                        {featured.data.specifications.status}
+                    </span>
+                </div>
+                <div class="flex items-start justify-between gap-6">
+                    <div class="flex flex-col gap-2">
+                        <span id="preview-title" class="font-display text-[26px] text-brand-navy">
+                            {featured.data.title}
+                        </span>
+                        <span id="preview-meta" class="text-xs tracking-[0.1em] text-brand-slate">
+                            {previewMeta(featured)}
+                        </span>
+                    </div>
+                    <span
+                        id="preview-counter"
+                        class="whitespace-nowrap pt-1.5 text-xs tracking-[0.1em] text-brand-navy/45"
+                    >
+                        01 / {String(projects.length).padStart(2, '0')}
+                    </span>
+                </div>
+            </div>
         </div>
     </div>
 </section>
+
+<script
+    is:inline
+    define:vars={{
+        previews: projects.map((project) => ({
+            title: project.data.title,
+            status: project.data.specifications.status,
+            meta: previewMeta(project),
+        })),
+    }}
+>
+    (function () {
+        const rows = document.querySelectorAll('[data-project-row]');
+        const images = document.querySelectorAll('[data-preview-image]');
+        const title = document.getElementById('preview-title');
+        const meta = document.getElementById('preview-meta');
+        const status = document.getElementById('preview-status');
+        const counter = document.getElementById('preview-counter');
+        if (!rows.length || !title || !meta || !status || !counter) return;
+
+        const total = String(previews.length).padStart(2, '0');
+
+        function activate(index) {
+            const preview = previews[index];
+            if (!preview) return;
+
+            images.forEach((image, i) => {
+                // Las fotos no activas solo se descargan la primera vez que se muestran.
+                if (i === index && !image.getAttribute('src') && image.dataset.src) {
+                    image.setAttribute('src', image.dataset.src);
+                }
+                image.classList.toggle('opacity-100', i === index);
+                image.classList.toggle('opacity-0', i !== index);
+            });
+            rows.forEach((row, i) => {
+                const isActive = i === index;
+                const number = row.querySelector('span');
+                const arrow = row.querySelector('svg');
+                number?.classList.toggle('text-brand-blue', isActive);
+                number?.classList.toggle('text-brand-navy/40', !isActive);
+                arrow?.classList.toggle('text-brand-blue', isActive);
+                arrow?.classList.toggle('text-brand-navy/[0.28]', !isActive);
+            });
+
+            title.textContent = preview.title;
+            meta.textContent = preview.meta;
+            status.textContent = preview.status;
+            counter.textContent = `${String(index + 1).padStart(2, '0')} / ${total}`;
+        }
+
+        rows.forEach((row, index) => {
+            row.addEventListener('mouseenter', () => activate(index));
+            row.addEventListener('focus', () => activate(index));
+        });
+    })();
+</script>

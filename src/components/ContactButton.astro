@@ -1,9 +1,32 @@
 ---
+interface Props {
+    label?: string;
+    /** light: blanco sobre fondo oscuro · solid: navy sobre papel */
+    variant?: 'light' | 'solid';
+    message?: string;
+    class?: string;
+}
 
+const {
+    label = 'Escríbenos por WhatsApp',
+    variant = 'light',
+    message = 'Hola, vengo de su sitio web y me interesa saber más sobre sus servicios',
+    class: className = '',
+} = Astro.props;
+
+const href = `https://wa.me/5213124055805?text=${encodeURIComponent(message)}`;
 ---
 
 <a
-    href="https://wa.me/5213124055805?text=Hola%20acabo%20de%20ver%20su%20sitio%20web%20y%20me%20interesa%20saber%20mas%20acerca%20de%20sus%20servicios"
-    class="ring-offset-background focus-visible:outline-hidden focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 h-11 rounded-md bg-white text-gray-900 hover:bg-gray-100 px-8 py-4 font-medium"
-    >Contáctanos</a
+    href={href}
+    target="_blank"
+    rel="noopener noreferrer"
+    class={`btn ${variant === 'light' ? 'btn-light' : 'btn-solid'} ${className}`}
 >
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path
+            d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.05-1.32A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.18-1.14l-.3-.18-3 .78.8-2.92-.2-.31A8.2 8.2 0 1 1 12 20.2Zm4.5-6.13c-.25-.13-1.46-.72-1.68-.8-.23-.09-.39-.13-.55.12-.16.25-.63.8-.78.96-.14.17-.28.19-.53.06a6.7 6.7 0 0 1-3.32-2.9c-.25-.43.25-.4.71-1.33.08-.16.04-.3-.02-.42-.06-.13-.55-1.33-.76-1.82-.2-.47-.4-.4-.55-.41h-.47a.9.9 0 0 0-.65.3c-.22.25-.85.83-.85 2.02s.87 2.34.99 2.5c.12.17 1.71 2.62 4.15 3.67 1.55.67 2.15.73 2.92.61.47-.07 1.46-.6 1.66-1.17.21-.58.21-1.07.15-1.17-.06-.11-.23-.17-.48-.3Z"
+        ></path>
+    </svg>
+    <span>{label}</span>
+</a>

@@ -2,7 +2,8 @@
 slug: 'casa-bego'
 title: 'Casa Bego'
 image: '/img/projects/mirador-1.webp'
-price: '$1,2000,000.00'
+price: '$1,200,000.00'
+order: 5
 category: 'Casa habitación'
 specifications:
     area: '120 m²'
@@ -28,4 +29,8 @@ images:
     - '/img/projects/mirador-4.webp'
 ---
 
-Hermosa casa de una planta con acabados de lujo, ideal para familias.
+Casa de dos niveles resuelta con volúmenes de concreto aparente que se encajan entre sí.
+
+La fachada juega con el peso del concreto y la calidez de la madera: puerta principal de duela vertical, celosías que dan privacidad a la planta baja y un ventanal enmarcado en negro en la planta alta.
+
+El acceso se resuelve con una escalinata de piedra entre jardinería densa, y una jardinera en azotea suma vegetación a la parte superior del volumen.

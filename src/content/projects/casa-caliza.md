@@ -2,7 +2,8 @@
 slug: 'casa-caliza'
 title: 'Casa Caliza'
 image: '/img/projects/rioja21-1.webp'
-price: '$1,2000,000.00'
+price: '$1,200,000.00'
+order: 4
 category: 'Casa habitación'
 specifications:
     area: '120 m²'
@@ -27,4 +28,8 @@ images:
     - '/img/projects/rioja21-3.webp'
 ---
 
-Hermosa casa de una planta con acabados de lujo, ideal para familias.
+Interiores abiertos donde la sala, el comedor y la cocina comparten un mismo espacio continuo.
+
+El concreto aparente en muros convive con la carpintería de madera y una cubierta de piedra oscura en la barra de cocina. La cancelería de piso a techo con perfilería negra abre a un patio interior que mete luz y vegetación al centro de la casa.
+
+Iluminación empotrada, una barra con banquillos y la doble altura del área social completan una planta baja pensada tanto para el uso diario como para recibir.

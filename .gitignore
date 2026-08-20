@@ -19,3 +19,6 @@ pnpm-debug.log*
 
 # macOS-specific files
 .DS_Store
+
+# imágenes originales antes de optimizar (recuperables también desde el historial de git)
+img-originales/

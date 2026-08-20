@@ -1,38 +1,43 @@
 ---
-
+const clients = [
+    { src: '/img/clients/1.jpg', alt: 'Cliente de Arking' },
+    { src: '/img/clients/2.png', alt: 'Cliente de Arking' },
+    { src: '/img/clients/3.png', alt: 'Cliente de Arking' },
+    { src: '/img/clients/4.png', alt: 'Cliente de Arking' },
+];
 ---
 
-<section id="Customers" class="py-16">
-    <div class="container mx-auto px-6 lg:px-8">
-        <div class="text-center mb-20 animate-fadeInUp" data-aos="fade-up">
-            <h2 class="text-4xl lg:text-5xl font-light text-gray-900 mb-6">
-                Nuestros<span class="block text-gradient font-medium">Clientes</span>
-            </h2>
-        </div><div class="grid lg:grid-cols-4 gap-8">
+<section id="Customers" class="scroll-mt-24 border-t border-line bg-brand-paper py-16 lg:py-[110px]">
+    <div class="mx-auto w-full max-w-[1560px] px-6 lg:px-20">
+        <div class="grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-12">
+            <div class="flex flex-col gap-4 lg:col-span-3" data-aos="fade-up">
+                <span class="label text-brand-slate">03 — Confianza</span>
+                <p class="text-pretty text-[17px] leading-relaxed text-brand-navy">
+                    Empresas e instituciones que han construido con nosotros.
+                </p>
+            </div>
+
             <div
-                class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-500 animate-fadeInUp"
-                style="animation-delay: 0s;"
+                class="grid grid-cols-2 border-r border-line lg:col-span-9 lg:grid-cols-4"
                 data-aos="fade-up"
             >
-                <img src="/img/clients/1.jpg" class="img-fluid" alt="" />
-            </div><div
-                class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-500 animate-fadeInUp"
-                style="animation-delay: 0.2s;"
-                data-aos="fade-up"
-            >
-                <img src="/img/clients/2.png" class="img-fluid" alt="" />
-            </div><div
-                class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-500 animate-fadeInUp"
-                style="animation-delay: 0.4s;"
-                data-aos="fade-up"
-            >
-                <img src="/img/clients/3.png" class="img-fluid" alt="" />
-            </div><div
-                class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-500 animate-fadeInUp"
-                style="animation-delay: 0.4s;"
-                data-aos="fade-up"
-            >
-                <img src="/img/clients/4.png" class="img-fluid" alt="" />
+                {
+                    clients.map((client) => (
+                        <div
+                            class="flex h-[104px] items-center justify-center border-l border-line px-6 lg:h-[118px] lg:px-8"
+                        >
+                            <img
+                                src={client.src}
+                                alt={client.alt}
+                                width="320"
+                                height="160"
+                                loading="lazy"
+                                decoding="async"
+                                class="max-h-[52px] w-auto max-w-full object-contain opacity-60 grayscale transition duration-500 hover:opacity-100 hover:grayscale-0 lg:max-h-[62px]"
+                            />
+                        </div>
+                    ))
+                }
             </div>
         </div>
     </div>
