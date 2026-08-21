@@ -6,14 +6,14 @@ price: '$1,200,000.00'
 order: 1
 category: 'Casa habitación'
 specifications:
-    area: '280 m²'
-    construction: '275 m²'
-    year: '2025'
+    area: '140 m²'
+    construction: '150 m²'
+    year: '2026'
     type: 'Residencial'
     status: 'En construcción'
     floors: '2'
-    bedrooms: '4'
-    bathrooms: '4'
+    bedrooms: '3'
+    bathrooms: '3'
     parking: '2'
     location: 'Colima, México'
 features:
@@ -21,12 +21,11 @@ features:
     - 'Patio de servicio'
     - 'Sala'
     - 'Comedor'
-    - 'Sala de TV'
-    - 'Terraza'
+    - 'Jardin'
 location:
     lat: 19.2552451
     lng: -103.6776209
-address: 'Calle Ejemplo 123, Colima, México'
+address: 'Nalda #1826, Punto Rioja ,Colima, México'
 images:
     - '/img/projects/apolo-1.webp'
     - '/img/projects/apolo-2.webp'
