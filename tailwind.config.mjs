@@ -11,6 +11,8 @@ export default {
 					slate: '#3d5978',
 					paper: '#f6f5f2',
 					paper2: '#eeece7',
+					amber: '#b9812c',
+					green: '#1f7a4d',
 				},
 			},
 			fontFamily: {

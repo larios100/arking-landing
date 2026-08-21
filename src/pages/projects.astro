@@ -5,6 +5,7 @@ import Layout from '@layouts/Layout.astro';
 import { getCollection } from 'astro:content';
 import { breadcrumbSchema } from '../lib/schema';
 import { thumb } from '../lib/images';
+import { statusBadgeClass } from '../lib/status';
 
 const projects = (await getCollection('projects')).sort(
     (a, b) => (a.data.order ?? 99) - (b.data.order ?? 99)
@@ -99,7 +100,9 @@ const breadcrumb = breadcrumbSchema([
                                         class="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
                                         src={thumb(project.data.image)}
                                     />
-                                    <span class="absolute left-0 top-5 inline-flex h-8 items-center bg-brand-navy px-4 text-[10px] uppercase tracking-label text-white">
+                                    <span
+                                        class={`absolute left-0 top-5 inline-flex h-8 items-center px-4 text-[10px] uppercase tracking-label text-white ${statusBadgeClass(project.data.specifications.status)}`}
+                                    >
                                         {project.data.specifications.status}
                                     </span>
                                 </div>

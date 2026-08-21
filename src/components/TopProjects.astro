@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import { thumb } from '../lib/images';
+import { statusBadgeClass } from '../lib/status';
 
 const projects = (await getCollection('projects')).sort(
     (a, b) => (a.data.order ?? 99) - (b.data.order ?? 99)
@@ -80,7 +81,7 @@ const previewMeta = (project: (typeof projects)[number]) => {
                                 {project.data.title}
                             </span>
                             <span class="hidden text-right text-xs tracking-[0.1em] text-brand-slate lg:block lg:w-[250px]">
-                                {project.data.category} · {project.data.specifications.area} ·{' '}
+                                {project.data.category} · {project.data.specifications.construction} ·{' '}
                                 {project.data.specifications.year}
                             </span>
                             <svg
@@ -147,7 +148,7 @@ const previewMeta = (project: (typeof projects)[number]) => {
                     }
                     <span
                         id="preview-status"
-                        class="absolute left-0 top-[26px] z-10 inline-flex h-8 items-center bg-brand-navy px-4 text-[10px] uppercase tracking-label text-white"
+                        class={`absolute left-0 top-[26px] z-10 inline-flex h-8 items-center px-4 text-[10px] uppercase tracking-label text-white ${statusBadgeClass(featured.data.specifications.status)}`}
                     >
                         {featured.data.specifications.status}
                     </span>
@@ -179,6 +180,7 @@ const previewMeta = (project: (typeof projects)[number]) => {
         previews: projects.map((project) => ({
             title: project.data.title,
             status: project.data.specifications.status,
+            badgeClass: statusBadgeClass(project.data.specifications.status),
             meta: previewMeta(project),
         })),
     }}
@@ -219,6 +221,8 @@ const previewMeta = (project: (typeof projects)[number]) => {
             title.textContent = preview.title;
             meta.textContent = preview.meta;
             status.textContent = preview.status;
+            status.classList.remove('bg-brand-navy', 'bg-brand-amber', 'bg-brand-green');
+            status.classList.add(preview.badgeClass);
             counter.textContent = `${String(index + 1).padStart(2, '0')} / ${total}`;
         }
 
