@@ -3,14 +3,14 @@ slug: 'casa-caliza'
 title: 'Casa Caliza'
 image: '/img/projects/rioja21-1.webp'
 price: '$1,200,000.00'
-order: 4
+order: 5
 category: 'Casa habitación'
 specifications:
     area: '120 m²'
     construction: '150 m²'
     year: '2025'
     type: 'Residencial'
-    status: 'En construcción'
+    status: 'VENDIDA'
     floors: '2'
     bedrooms: '3'
     bathrooms: '2'

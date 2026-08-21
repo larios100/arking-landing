@@ -3,14 +3,14 @@ slug: 'casa-c4'
 title: 'Casa C4'
 image: '/img/projects/c4-1.webp'
 price: '$1,200,000.00'
-order: 2
+order: 6
 category: 'Casa habitación'
 specifications:
     area: '280 m²'
     construction: '275 m²'
     year: '2025'
     type: 'Residencial'
-    status: 'En construcción'
+    status: 'VENDIDA'
     floors: '2'
     bedrooms: '4'
     bathrooms: '4'

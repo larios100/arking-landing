@@ -10,10 +10,10 @@ specifications:
     construction: '150 m²'
     year: '2026'
     type: 'Residencial'
-    status: 'En construcción'
+    status: 'PREVENTA'
     floors: '2'
     bedrooms: '3'
-    bathrooms: '3'
+    bathrooms: '3.5'
     parking: '2'
     location: 'Colima, México'
 features:

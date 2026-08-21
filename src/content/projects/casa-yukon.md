@@ -3,14 +3,14 @@ slug: 'casa-yukon'
 title: 'Casa Yukon'
 image: '/img/projects/yukon-1.webp'
 price: '$1,200,000.00'
-order: 6
+order: 7
 category: 'Casa habitación'
 specifications:
     area: '120 m²'
     construction: '150 m²'
     year: '2025'
     type: 'Residencial'
-    status: 'En construcción'
+    status: 'VENDIDA'
     floors: '1'
     bedrooms: '2'
     bathrooms: '2'

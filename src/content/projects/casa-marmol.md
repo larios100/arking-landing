@@ -3,14 +3,14 @@ slug: 'casa-marmol'
 title: 'Casa Mármol'
 image: '/img/projects/rioja25-1.webp'
 price: '$1,200,000.00'
-order: 3
+order: 4
 category: 'Casa habitación'
 specifications:
     area: '120 m²'
     construction: '150 m²'
     year: '2025'
     type: 'Residencial'
-    status: 'En construcción'
+    status: 'EN VENTA'
     floors: '1'
     bedrooms: '2'
     bathrooms: '2'

@@ -3,14 +3,14 @@ slug: 'local-capire'
 title: 'Local Capire'
 image: '/img/projects/local-1.webp'
 price: '$1,200,000.00'
-order: 7
+order: 8
 category: 'Local'
 specifications:
     area: '120 m²'
     construction: '150 m²'
     year: '2025'
     type: 'Comercial'
-    status: 'En construcción'
+    status: 'Entregado'
     floors: '2'
     bedrooms: '3'
     bathrooms: '2'
