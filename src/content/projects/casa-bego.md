@@ -21,7 +21,6 @@ features:
 location:
     lat: 19.2552451
     lng: -103.6776209
-address: 'Calle Ejemplo 123, Colima, México'
 images:
     - '/img/projects/mirador-1.webp'
     - '/img/projects/mirador-2.webp'

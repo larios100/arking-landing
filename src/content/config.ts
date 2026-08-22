@@ -26,7 +26,7 @@ const projects = defineCollection({
       lat: z.number(),
       lng: z.number(),
     }),
-    address: z.string(),
+    address: z.string().optional(),
     images: z.array(z.string()),
     }),
     

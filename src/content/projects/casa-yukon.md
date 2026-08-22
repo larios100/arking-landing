@@ -23,7 +23,6 @@ features:
 location:
     lat: 19.2552451
     lng: -103.6776209
-address: 'Calle Ejemplo 123, Colima, México'
 images:
     - '/img/projects/yukon-1.webp'
     - '/img/projects/yukon-2.webp'

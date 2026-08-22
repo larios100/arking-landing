@@ -252,7 +252,7 @@ const whatsappMessage = `Hola, me interesa el proyecto ${title}. ¿Podemos agend
                 <h2 class="font-display text-3xl leading-[1.06] text-brand-navy lg:text-[40px]">
                     {specifications.location}
                 </h2>
-                <p class="text-base leading-[1.7] text-brand-slate">{address}</p>
+                {address && <p class="text-base leading-[1.7] text-brand-slate">{address}</p>}
                 <span class="text-xs tracking-[0.14em] text-brand-navy/50">
                     {lat.toFixed(4)}° N · {Math.abs(lng).toFixed(4)}° O
                 </span>
