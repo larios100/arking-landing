@@ -3,11 +3,12 @@ import { getCollection } from 'astro:content';
 import { thumb } from '../lib/images';
 import { statusBadgeClass } from '../lib/status';
 
-const projects = (await getCollection('projects')).sort(
+const allProjects = (await getCollection('projects')).sort(
     (a, b) => (a.data.order ?? 99) - (b.data.order ?? 99)
 );
+const projects = allProjects.slice(0, 5);
 
-const years = Array.from(new Set(projects.map((p) => p.data.specifications.year))).sort();
+const years = Array.from(new Set(allProjects.map((p) => p.data.specifications.year))).sort();
 const yearRange = years.length > 1 ? `${years[0]}–${years[years.length - 1]}` : years[0];
 const featured = projects[0];
 
@@ -35,16 +36,16 @@ const previewMeta = (project: (typeof projects)[number]) => {
             data-aos="fade-up"
         >
             <div class="flex flex-col gap-4 lg:gap-[22px]">
-                <span class="label text-brand-slate">02 — Obra</span>
+                <span class="label text-brand-slate">02 — Proyectos</span>
                 <h2
                     class="font-display text-[clamp(2.75rem,6vw,4.75rem)] leading-none tracking-[-0.02em] text-brand-navy"
                 >
-                    Obra seleccionada
+                    Proyecto seleccionado
                 </h2>
             </div>
             <div class="flex items-center gap-4 lg:pb-3">
                 <span class="text-xs uppercase tracking-wider2 text-brand-slate">
-                    {projects.length} proyectos
+                    {allProjects.length} proyectos
                 </span>
                 <span class="h-3.5 w-px bg-brand-navy/20"></span>
                 <span class="text-xs uppercase tracking-wider2 text-brand-slate">
