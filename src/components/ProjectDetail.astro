@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 import ContactButton from './ContactButton.astro';
 import Header from './Header.astro';
 import { thumb } from '../lib/images';
+import { statusBadgeClass } from '../lib/status';
 
 const { entry } = Astro.props;
 const { Content } = await entry.render();
@@ -107,7 +108,7 @@ const whatsappMessage = `Hola, me interesa el proyecto ${title}. ¿Podemos agend
     <!-- Imagen principal -->
     <section class="px-6 lg:px-20">
         <div class="mx-auto w-full max-w-[1560px]" data-aos="fade-up">
-            <div class="h-[280px] w-full overflow-hidden bg-[#dcd9d2] sm:h-[420px] lg:h-[660px]">
+            <div class="relative h-[280px] w-full overflow-hidden bg-[#dcd9d2] sm:h-[420px] lg:h-[660px]">
                 <img
                     alt={`${title} — fachada principal`}
                     width="1600"
@@ -117,6 +118,11 @@ const whatsappMessage = `Hola, me interesa el proyecto ${title}. ¿Podemos agend
                     class="h-full w-full object-cover"
                     src={image}
                 />
+                <span
+                    class={`absolute left-0 top-6 z-10 inline-flex h-8 items-center px-4 text-[10px] uppercase tracking-label text-white ${statusBadgeClass(specifications.status)}`}
+                >
+                    {specifications.status}
+                </span>
             </div>
             <div class="flex items-center justify-between pt-3.5">
                 <span class="label text-brand-slate">Fachada principal</span>

@@ -7,7 +7,7 @@ order: 3
 category: 'Casa habitación'
 specifications:
     area: '120 m²'
-    construction: '150 m²'
+    construction: '129 m²'
     year: '2025'
     type: 'Residencial'
     status: 'EN VENTA'

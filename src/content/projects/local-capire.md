@@ -7,7 +7,7 @@ order: 8
 category: 'Local'
 specifications:
     area: '120 m²'
-    construction: '150 m²'
+    construction: '109 m²'
     year: '2025'
     type: 'Comercial'
     status: 'Entregado'
