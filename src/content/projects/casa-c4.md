@@ -3,7 +3,7 @@ slug: 'casa-c4'
 title: 'Casa C4'
 image: '/img/projects/c4-1.webp'
 price: '$1,200,000.00'
-order: 6
+order: 7
 category: 'Casa habitación'
 specifications:
     area: '280 m²'
@@ -26,7 +26,7 @@ features:
 location:
     lat: 19.2552451
     lng: -103.6776209
-address: 'Calle Ejemplo 123, Colima, México'
+address: 'Nalda #1816, Punto Rioja ,Colima, México'
 images:
     - '/img/projects/c4-1.webp'
     - '/img/projects/c4-2.webp'
