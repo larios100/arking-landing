@@ -10,7 +10,7 @@ specifications:
     construction: '163 m²'
     year: '2025'
     type: 'Residencial'
-    status: 'VENDIDA'
+    status: 'EN VENTA'
     floors: '2'
     bedrooms: '3'
     bathrooms: '2'
