@@ -3,7 +3,7 @@ slug: 'casa-laja'
 title: 'Casa Laja'
 image: '/img/projects/laja-1.webp'
 price: '$1,200,000.00'
-order: 5
+order: 6
 category: 'Casa habitación'
 specifications:
     area: '120 m²'

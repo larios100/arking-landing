@@ -3,7 +3,7 @@ slug: 'casa-bego'
 title: 'Casa Bego'
 image: '/img/projects/mirador-1.webp'
 price: '$1,200,000.00'
-order: 3
+order: 4
 category: 'Casa habitación'
 specifications:
     area: '120 m²'

@@ -3,7 +3,7 @@ slug: 'casa-caliza'
 title: 'Casa Caliza'
 image: '/img/projects/rioja21-1.webp'
 price: '$1,200,000.00'
-order: 6
+order: 7
 category: 'Casa habitación'
 specifications:
     area: '120 m²'

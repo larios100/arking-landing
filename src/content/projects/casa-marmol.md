@@ -3,7 +3,7 @@ slug: 'casa-marmol'
 title: 'Casa Mármol'
 image: '/img/projects/rioja25-1.webp'
 price: '$1,200,000.00'
-order: 4
+order: 5
 category: 'Casa habitación'
 specifications:
     area: '120 m²'

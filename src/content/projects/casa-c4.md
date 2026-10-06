@@ -3,7 +3,7 @@ slug: 'casa-c4'
 title: 'Casa C4'
 image: '/img/projects/c4-1.webp'
 price: '$1,200,000.00'
-order: 7
+order: 8
 category: 'Casa habitación'
 specifications:
     area: '280 m²'

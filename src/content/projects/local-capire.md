@@ -3,7 +3,7 @@ slug: 'local-capire'
 title: 'Local Capire'
 image: '/img/projects/local-1.webp'
 price: '$1,200,000.00'
-order: 9
+order: 10
 category: 'Local'
 specifications:
     area: '120 m²'
