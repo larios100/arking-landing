@@ -26,7 +26,7 @@ features:
 location:
     lat: 19.2552451
     lng: -103.6776209
-address: 'Nalda #1816, Punto Rioja ,Colima, México'
+address: 'Punto Rioja ,Colima, México'
 images:
     - '/img/projects/c4-1.webp'
     - '/img/projects/c4-2.webp'
